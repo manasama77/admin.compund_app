@@ -378,7 +378,7 @@
 								<td>
 									<div class="text" style="padding: 0 2.5em; text-align: center;">
 										<h3>Activate Your Account</h3>
-										<h4><mark><a href="<?= site_url('activate/' . urlencode($email) . '/' . $activation_code); ?>"><?= site_url('activate/' . urlencode($email) . '/' . $activation_code); ?></a></mark></h4>
+										<h4><mark><a href="<?= SITE_URL_MEMBER ?>activate/<?= urlencode($email); ?>/<?= $activation_code; ?>"><?= SITE_URL_MEMBER ?>activate/<?= urlencode($email); ?>/<?= $activation_code; ?></a></mark></h4>
 									</div>
 								</td>
 							</tr>

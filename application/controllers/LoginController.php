@@ -8,20 +8,18 @@ class LoginController extends CI_Controller
 	protected $datetime;
 	protected $from;
 	protected $from_alias;
-	protected $to;
 	protected $ip_address;
 	protected $user_agent;
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper(['cookie', 'string', 'Otp_helper', 'Domain_helper']);
+		$this->load->helper(['cookie', 'string', 'otp_helper', 'domain_helper']);
 		$this->load->model('M_log_send_email_admin');
 
 		$this->datetime   = date('Y-m-d H:i:s');
-		$this->from       = 'adam.pm59@gmail.com';
-		$this->from_alias = 'Admin Test';
-		$this->to         = 'adam.pm77@gmail.com';
+		$this->from       = EMAIL_ADMIN;
+		$this->from_alias = EMAIL_ALIAS;
 		$this->ip_address = $this->input->ip_address();
 		$this->user_agent = $this->input->user_agent();
 	}
@@ -165,14 +163,14 @@ class LoginController extends CI_Controller
 		redirect('login');
 	}
 
-	public function _set_cookie(): string
+	protected function _set_cookie(): string
 	{
 		$key_cookies = random_string('alnum', 64);
 		set_cookie(KUE, $key_cookies, 86400);
 		return $key_cookies;
 	}
 
-	public function _set_session($id, $name, $email, $role, $cookies, $is_active): void
+	protected function _set_session($id, $name, $email, $role, $cookies, $is_active): void
 	{
 		$data = [
 			SESI . 'id'        => $id,
@@ -194,7 +192,7 @@ class LoginController extends CI_Controller
 		$this->M_core->update('admin', $data, $where);
 	}
 
-	public function _check_cookies($cookies): void
+	protected function _check_cookies($cookies): void
 	{
 		$where_cookies = [
 			'cookies'    => $cookies,
@@ -221,7 +219,7 @@ class LoginController extends CI_Controller
 		}
 	}
 
-	public function _send_otp($id, $to): bool
+	protected function _send_otp($id, $to): bool
 	{
 		$subject = "EDI TRADE | OTP (One Time Password)";
 		$message = "";
@@ -234,7 +232,7 @@ class LoginController extends CI_Controller
 		$otp = Generate_otp();
 
 		$data['otp'] = $otp;
-		$message = $this->load->view('emails/otp_template', $data, TRUE);
+		$message     = $this->load->view('emails/otp_template', $data, TRUE);
 
 		$this->email->message($message);
 

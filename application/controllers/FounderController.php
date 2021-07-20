@@ -8,7 +8,6 @@ class FounderController extends CI_Controller
 	protected $datetime;
 	protected $from;
 	protected $from_alias;
-	protected $to;
 
 	public function __construct()
 	{
@@ -21,9 +20,8 @@ class FounderController extends CI_Controller
 		$this->load->model('M_log_send_email_admin');
 
 		$this->datetime   = date('Y-m-d H:i:s');
-		$this->from       = 'adam.pm59@gmail.com';
-		$this->from_alias = 'Admin Test';
-		$this->to         = 'adam.pm77@gmail.com';
+		$this->from       = EMAIL_ADMIN;
+		$this->from_alias = EMAIL_ALIAS;
 
 		$this->Nested_set->setControlParams('tree', 'lft', 'rgt', 'id', 'id_upline', 'email');
 		$this->Nested_set->setPrimaryKeyColumn('id_member');
@@ -223,7 +221,7 @@ class FounderController extends CI_Controller
 		return $this->Nested_set->initialiseRoot($data_hie);
 	}
 
-	public function _send_email_activation($id, $to)
+	protected function _send_email_activation($id, $to)
 	{
 		$subject = "EDI TRADE | Account Activation";
 		$message = "";

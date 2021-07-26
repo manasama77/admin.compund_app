@@ -30,7 +30,7 @@ class L_admin
 		}
 	}
 
-	public function check_cookies()
+	protected function check_cookies()
 	{
 		$cookies = get_cookie(KUE);
 
@@ -39,6 +39,7 @@ class L_admin
 		} else {
 			$where = [
 				'cookies'    => $cookies,
+				'is_active'  => 'yes',
 				'deleted_at' => null,
 			];
 			$arr = $this->ci->mcore->get('admin', '*', $where);
@@ -94,7 +95,7 @@ class L_admin
 		redirect('logout');
 	}
 
-	public function reset_session($id, $email, $name, $role, $is_active)
+	protected function reset_session($id, $email, $name, $role, $is_active)
 	{
 		$this->ci->session->set_userdata(SESI . 'id', $id);
 		$this->ci->session->set_userdata(SESI . 'email', $email);

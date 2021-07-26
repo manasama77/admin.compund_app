@@ -23,7 +23,7 @@
 		<!-- /.login-logo -->
 		<div class="card card-outline card-danger">
 			<div class="card-header text-center">
-				<a href="<?= base_url(); ?>" class="h1"><b>EDI</b>TRADE</a>
+				<a href="<?= base_url(); ?>" class="h1"><b><?= APP_NAME; ?></b></a>
 			</div>
 			<div class="card-body">
 				<p class="login-box-msg">Sign in to start your session</p>

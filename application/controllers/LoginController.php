@@ -32,8 +32,14 @@ class LoginController extends CI_Controller
 		if ($cookies != NULL) {
 			$this->_check_cookies($cookies);
 		} else {
+			$check_session = $this->_check_session();
+			if ($check_session === true) {
+				redirect('dashboard');
+				exit;
+			}
+
 			$data = [
-				'title' => 'Edit Trade | Admin Sign In'
+				'title' => APP_NAME . ' | Admin Sign In'
 			];
 			return $this->load->view('login', $data, FALSE);
 		}
@@ -49,7 +55,7 @@ class LoginController extends CI_Controller
 			'email'      => $email,
 			'deleted_at' => null,
 		];
-		$arr_user = $this->M_core->get('admin', 'id, password, is_active', $where, null, null, 1);
+		$arr_user = $this->M_core->get('admin', 'id, password, name, is_active', $where, null, null, 1);
 
 		if ($arr_user->num_rows() == 0) {
 			$this->session->set_flashdata('email_value', $email);
@@ -98,7 +104,7 @@ class LoginController extends CI_Controller
 		}
 
 		$data = [
-			'title' => 'Edit Trade | OTP'
+			'title' => APP_NAME . ' | OTP'
 		];
 		return $this->load->view('otp_login', $data, FALSE);
 	}
@@ -106,7 +112,6 @@ class LoginController extends CI_Controller
 	public function otp_auth()
 	{
 		$code  = 500;
-		$id    = $this->session->userdata(SESI . 'id');
 		$email = $this->session->userdata(SESI . 'email');
 		$otp   = $this->input->post('otp');
 
@@ -204,11 +209,11 @@ class LoginController extends CI_Controller
 		$check_cookies = $this->M_core->get('admin', '*', $where_cookies);
 
 		if ($check_cookies->num_rows() == 1) {
-			$id    = $check_cookies->row()->id;
-			$name  = $check_cookies->row()->name;
-			$email = $check_cookies->row()->email;
-			$role  = $check_cookies->row()->role;
-			$is_active  = $check_cookies->row()->is_active;
+			$id        = $check_cookies->row()->id;
+			$name      = $check_cookies->row()->name;
+			$email     = $check_cookies->row()->email;
+			$role      = $check_cookies->row()->role;
+			$is_active = $check_cookies->row()->is_active;
 
 			$this->_set_session($id, $name, $email, $role, $cookies, $is_active);
 			$this->session->set_flashdata('first_login', 'Login Success, Never share your Email and Password to the others');
@@ -251,7 +256,7 @@ class LoginController extends CI_Controller
 	public function forgot_password()
 	{
 		$data = [
-			'title' => 'EDI TRADE | Forgot Password'
+			'title' => APP_NAME . ' | Forgot Password'
 		];
 		$this->load->view('forgot_password', $data);
 	}
@@ -288,9 +293,9 @@ class LoginController extends CI_Controller
 		echo json_encode(['code' => $code]);
 	}
 
-	public function _send_email_forgot_password($id, $to)
+	protected function _send_email_forgot_password($id, $to)
 	{
-		$subject = "EDI TRADE | Forgot Password";
+		$subject = APP_NAME . " | Forgot Password";
 		$message = "";
 
 		$this->email->set_newline("\r\n");
@@ -340,7 +345,7 @@ class LoginController extends CI_Controller
 		if ($this->form_validation->run() === false) {
 
 			$data = [
-				'title' => 'EDI TRADE | Reset Password',
+				'title' => APP_NAME . ' | Reset Password',
 				'email' => $email_decode,
 			];
 			return $this->load->view('reset_password', $data);
@@ -362,10 +367,35 @@ class LoginController extends CI_Controller
 			}
 
 			$data = [
-				'title' => 'EDI TRADE | Reset Password Success',
+				'title' => APP_NAME . ' | Reset Password Success',
 			];
 			return $this->load->view('reset_password_success', $data);
 		}
+	}
+
+	protected function _check_session()
+	{
+		$id    = $this->session->userdata(SESI . 'id');
+		$email = $this->session->userdata(SESI . 'email');
+
+		if (!$id && !$email) {
+			return false;
+		}
+
+		$where = [
+			'id'         => $id,
+			'email'      => $email,
+			'is_active'  => 'yes',
+			'deleted_at' => null,
+		];
+
+		$count = $this->M_core->count('member', $where);
+
+		if ($count == 0) {
+			return false;
+		}
+
+		return true;
 	}
 }
         

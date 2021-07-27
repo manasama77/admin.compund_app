@@ -23,6 +23,7 @@ class M_member extends CI_Model
 			'et_member.user_agent',
 			'et_member_balance.total_invest_trade_manager',
 			'et_member_balance.total_invest_crypto_asset',
+			'et_member_balance.total_omset',
 			'et_member.created_at',
 		]);
 		$this->db->from('member');

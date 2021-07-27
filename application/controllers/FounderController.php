@@ -15,7 +15,7 @@ class FounderController extends CI_Controller
 		$this->load->library('L_admin', null, 'template');
 		$this->load->library('Nested_set', null, 'Nested_set');
 		$this->load->library('L_genuine_mail', null, 'genuine_mail');
-		$this->load->helper(['cookie', 'string', 'Otp_helper', 'Domain_helper']);
+		$this->load->helper(['cookie', 'string', 'otp_helper', 'domain_helper', 'floating_helper']);
 		$this->load->model('M_member');
 		$this->load->model('M_log_send_email_admin');
 
@@ -72,7 +72,7 @@ class FounderController extends CI_Controller
 		}
 
 		$data = [
-			'title'       => 'Edit Trade | Founder Management',
+			'title'       => APP_NAME . ' | Founder Management',
 			'content'     => 'founder/main',
 			'vitamin_js'  => 'founder/main_js',
 			'arr_founder' => $arr_founder,
@@ -226,7 +226,7 @@ class FounderController extends CI_Controller
 
 	protected function _send_email_activation($id, $to)
 	{
-		$subject = "EDI TRADE | Account Activation";
+		$subject = APP_NAME . " | Account Activation";
 		$message = "";
 
 		$this->email->set_newline("\r\n");

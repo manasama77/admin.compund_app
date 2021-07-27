@@ -8,21 +8,19 @@ class MemberController extends CI_Controller
 	protected $datetime;
 	protected $from;
 	protected $from_alias;
-	protected $to;
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->library('L_admin', null, 'template');
 		$this->load->library('Nested_set', null, 'Nested_set');
-		$this->load->helper(['cookie', 'string', 'Otp_helper', 'Domain_helper']);
+		$this->load->helper(['cookie', 'string', 'otp_helper', 'domain_helper', 'floating_helper']);
 		$this->load->model('M_member');
 		$this->load->model('M_log_send_email_admin');
 
 		$this->datetime   = date('Y-m-d H:i:s');
-		$this->from       = 'adam.pm59@gmail.com';
-		$this->from_alias = 'Admin Test';
-		$this->to         = 'adam.pm77@gmail.com';
+		$this->from       = EMAIL_ADMIN;
+		$this->from_alias = EMAIL_ALIAS;
 
 		$this->Nested_set->setControlParams('tree', 'lft', 'rgt', 'id', 'id_upline', 'email');
 		$this->Nested_set->setPrimaryKeyColumn('id_member');
@@ -31,54 +29,21 @@ class MemberController extends CI_Controller
 
 	public function index()
 	{
-		$id_admin = $this->session->userdata(SESI . 'id');
-		if ($id_admin) {
-			$arr_member = [];
-			$arr = $this->M_member->get_list_member();
-			if ($arr->num_rows() > 0) {
-				foreach ($arr->result() as $key) {
-					$id                         = $key->id;
-					$profile_picture            = $key->profile_picture;
-					$fullname                   = $key->fullname;
-					$email                      = $key->email;
-					$phone_number               = $key->phone_number;
-					$is_active                  = $key->is_active;
-					$total_invest_trade_manager = $key->total_invest_trade_manager;
-					$total_invest_crypto_asset  = $key->total_invest_crypto_asset;
-					$total_asset                = $total_invest_trade_manager + $total_invest_crypto_asset;
-					$count_downline             = $this->_tree_count_downline($id);
-
-					if (is_file(FCPATH . $profile_picture)) {
-						$pp = 'public/img/pp/' . $profile_picture;
-					} else {
-						$pp = "public/img/pp/default_avatar.svg";
-					}
-
-					$arr_nested = [
-						'id'                         => $id,
-						'profile_picture'            => $pp,
-						'fullname'                   => $fullname,
-						'email'                      => $email,
-						'phone_number'               => $phone_number,
-						'is_active'                  => $is_active,
-						'total_invest_trade_manager' => $total_invest_trade_manager,
-						'total_invest_crypto_asset'  => $total_invest_crypto_asset,
-						'total_asset'                => $total_asset,
-						'count_downline'             => $count_downline,
-					];
-
-					array_push($arr_member, $arr_nested);
-				}
-			}
-		}
+		$arr_member = $this->_get_member();
 
 		$data = [
-			'title'      => 'Edit Trade | Member Management',
+			'title'      => APP_NAME . ' | Member Management',
 			'content'    => 'member/main',
 			'vitamin_js' => 'member/main_js',
 			'arr_member' => $arr_member,
 		];
 		$this->template->render($data);
+	}
+
+	protected function _get_member()
+	{
+		$arr_member = $this->M_member->get_list_member();
+		return $arr_member;
 	}
 
 	public function store()
@@ -198,7 +163,7 @@ class MemberController extends CI_Controller
 
 	public function _send_email_activation($id, $to)
 	{
-		$subject = "EDI TRADE | Account Activation";
+		$subject = APP_NAME . " | Account Activation";
 		$message = "";
 
 		$this->email->set_newline("\r\n");

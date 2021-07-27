@@ -16,7 +16,6 @@
 
 <section class="content">
 	<div class="container-fluid">
-		<?php echo '<pre>' . print_r($arr->result(), 1) . '</pre>'; ?>
 		<div class="row">
 
 			<div class="col-sm-12 col-md-8">

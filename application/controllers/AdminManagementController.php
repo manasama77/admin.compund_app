@@ -18,7 +18,7 @@ class AdminManagementController extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'title'      => 'Edit Trade | Admin Management',
+			'title'      => APP_NAME . ' | Admin Management',
 			'content'    => 'admin_management/main',
 			'vitamin_js' => 'admin_management/main_js',
 		];

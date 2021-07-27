@@ -2,7 +2,7 @@
 	$(document).ready(function() {
 		$("#table_data").DataTable({
 			"scrollX": "300px",
-			"scrollY": "300px",
+			"scrollY": "700px",
 			order: [
 				[0, 'desc']
 			],
@@ -134,7 +134,7 @@
 
 	function processChangeStatus(id, is_active) {
 		$.ajax({
-			url: '<?= site_url('member_management/change_status'); ?>',
+			url: '<?= site_url('founder/change_status'); ?>',
 			method: 'post',
 			dataType: 'json',
 			data: {
@@ -159,14 +159,14 @@
 				Swal.fire({
 					icon: 'error',
 					title: 'Oops...',
-					text: 'Failed connect to Database, please contact web developer',
+					html: 'Failed connect to Database, please contact web developer',
 				});
 			} else if (e.code == 200) {
 				Swal.fire({
 					position: 'top-end',
 					icon: 'success',
 					title: 'Success...',
-					text: 'Update Success',
+					html: 'Update Success',
 					showConfirmButton: true,
 					timer: 2000,
 					timerProgressBar: true,

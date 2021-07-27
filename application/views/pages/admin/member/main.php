@@ -16,7 +16,6 @@
 
 <section class="content">
 	<div class="container-fluid">
-		<?php echo '<pre>' . print_r($arr_member, 1) . '</pre>'; ?>
 		<div class="row">
 
 			<div class="col-12">
@@ -29,7 +28,7 @@
 							<table class="table table-bordered table-striped" id="table_data">
 								<thead>
 									<tr>
-										<th>Picture</th>
+										<th style="min-width: 100px;">Date</th>
 										<th>Fullname</th>
 										<th>Email</th>
 										<th>Phone</th>
@@ -40,7 +39,7 @@
 								</thead>
 								<tbody>
 									<?php
-									foreach ($arr_member as $key) :
+									foreach ($arr_member->result_array() as $key) :
 										if ($key['is_active'] == "yes") {
 											$badge_color = 'badge-success';
 											$badge_text = 'Active';
@@ -51,7 +50,7 @@
 									?>
 										<tr>
 											<td>
-												<img src="<?= base_url($key['profile_picture']); ?>" alt="Profile Picture" class="img-size-50">
+												<?= $key['created_at']; ?>
 											</td>
 											<td>
 												<?= $key['fullname']; ?>
@@ -64,7 +63,7 @@
 											</td>
 											<td>
 												<span class="badge badge-success">
-													<i class="fas fa-coin"></i> <?= $key['total_asset']; ?> USDT
+													<i class="fas fa-coin"></i> <?= check_float($key['total_omset']); ?> USDT
 												</span>
 											</td>
 											<td>

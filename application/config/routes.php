@@ -33,6 +33,12 @@ $route['profit_trade_manager'] = 'ProfitTradeManagerController/index';
 
 $route['profit_crypto_asset'] = 'ProfitCryptoAssetController/index';
 
+$route['bonus_recruitment'] = 'BonusRecruitmentController/index';
+
+$route['bonus_qualification_leader'] = 'BonusQLController/index';
+
+$route['bonus_royalty'] = 'BonusRoyaltyController/index';
+
 $route['admin_management'] = 'AdminManagementController/index';
 $route['change_role']      = 'AdminManagementController/change_role';
 $route['change_status']    = 'AdminManagementController/change_status';

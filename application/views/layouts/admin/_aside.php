@@ -76,45 +76,28 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-scroll"></i>
+					<a href="<?= site_url('bonus_recruitment'); ?>" class="nav-link">
+						<i class="nav-icon fas fa-coins"></i>
 						<p>
-							Logs
-							<i class="fas fa-angle-left right"></i>
+							Bonus Recruitment
 						</p>
 					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="<?= site_url('login'); ?> log_trade_profit.html" class="nav-link">
-								<i class="fas fa-hand-holding-usd nav-icon"></i>
-								<p>Trade Profit</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= site_url('login'); ?> log_crypto_asset.html" class="nav-link">
-								<i class="fas fa-house-user nav-icon"></i>
-								<p>Crypto Asset</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= site_url('login'); ?> log_quest.html" class="nav-link">
-								<i class="fas fa-tasks nav-icon"></i>
-								<p>Rewards</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= site_url('log/recruitment'); ?>" class="nav-link">
-								<i class="fas fa-sun nav-icon"></i>
-								<p>Recruitment</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= site_url('login'); ?> log_withdraw.html" class="nav-link">
-								<i class="fas fa-wallet nav-icon"></i>
-								<p>Withdraw</p>
-							</a>
-						</li>
-					</ul>
+				</li>
+				<li class="nav-item">
+					<a href="<?= site_url('bonus_qualification_leader'); ?>" class="nav-link">
+						<i class="nav-icon fas fa-coins"></i>
+						<p>
+							Bonus Qualification Leader
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="<?= site_url('bonus_royalty'); ?>" class="nav-link">
+						<i class="nav-icon fas fa-coins"></i>
+						<p>
+							Bonus Royalty
+						</p>
+					</a>
 				</li>
 				<li class="nav-item">
 					<a href="<?= site_url('member_management'); ?>" class="nav-link">

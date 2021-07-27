@@ -16,7 +16,6 @@
 
 <section class="content">
 	<div class="container-fluid">
-		<?php echo '<pre>' . print_r($arr_founder, 1) . '</pre>'; ?>
 		<div class="row">
 
 			<div class="col-sm-12 col-md-8">
@@ -64,12 +63,12 @@
 											</td>
 											<td>
 												<span class="badge badge-success">
-													<i class="fas fa-coin"></i> <?= $key['total_asset']; ?> USDT
+													<i class="fas fa-coin"></i> <?= check_float($key['total_asset']); ?> USDT
 												</span>
 											</td>
 											<td>
 												<span class="badge badge-warning">
-													<i class="fas fa-users"></i> <?= $key['count_downline']; ?> Member
+													<i class="fas fa-users"></i> <?= check_float($key['count_downline']); ?> Member
 												</span>
 											</td>
 											<td class="text-center">

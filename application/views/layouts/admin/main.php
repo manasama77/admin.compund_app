@@ -13,7 +13,8 @@ if (isset($vitamin_css)) {
 	<div class="wrapper">
 
 		<!-- Preloader -->
-		<?php $this->load->view('layouts/admin/_preloader'); ?>
+		<?php //$this->load->view('layouts/admin/_preloader'); 
+		?>
 		<!-- /.Preloader -->
 
 		<!-- Navbar -->
@@ -26,7 +27,6 @@ if (isset($vitamin_css)) {
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-			<?php echo '<pre>' . print_r($this->session->all_userdata(), 1) . '</pre>'; ?>
 			<?php $this->load->view('pages/admin/' . $content); ?>
 		</div>
 		<!-- /.content-wrapper -->

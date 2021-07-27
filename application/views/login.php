@@ -18,9 +18,7 @@
 </head>
 
 <body class="hold-transition login-page">
-	<?php echo '<pre>' . print_r($this->session->all_userdata(), 1) . '</pre>'; ?>
 	<div class="login-box">
-		<!-- /.login-logo -->
 		<div class="card card-outline card-danger">
 			<div class="card-header text-center">
 				<a href="<?= base_url(); ?>" class="h1"><b><?= APP_NAME; ?></b></a>

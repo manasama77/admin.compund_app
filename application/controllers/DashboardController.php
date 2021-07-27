@@ -20,6 +20,8 @@ class DashboardController extends CI_Controller
 		$this->load->library('L_admin', null, 'template');
 		$this->load->model('M_dashboard');
 		$this->load->model('M_member');
+		$this->load->helper('floating_helper');
+
 
 		$this->date           = date('Y-m-d');
 		$this->datetime       = date('Y-m-d H:i:s');
@@ -35,39 +37,90 @@ class DashboardController extends CI_Controller
 
 	public function index()
 	{
-		// INVESTMENT DATA START
-		$arr_investment                 = $this->M_dashboard->get_total_investment();
-		$sum_total_invest_trade_manager = $arr_investment->row()->sum_total_invest_trade_manager;
-		$sum_total_invest_crypto_asset  = $arr_investment->row()->sum_total_invest_crypto_asset;
-		$total_investment               = $sum_total_invest_trade_manager + $sum_total_invest_crypto_asset;
-		// INVESTMENT DATA END
-
-		// COUNT MEMBER ACTIVE START
-		$where_member = [
-			'is_active'  => 'yes',
-			'deleted_at' => null,
-		];
-		$count_total_member = $this->M_core->count('member', $where_member);
-		// COUNT MEMBER ACTIVE END
-
-		// GET LIST MEMBER START
-		$arr_member = $this->M_member->get_list_member();
-		// GET LIST MEMBER END
-
-		// GET COIN BALANCE START
-		$arr_coin_balance = $this->_coinpayments_api_call('balances', ['all' => 0]);
-		// GET COIN BALANCE END
+		$card              = $this->_card();
+		$arr_latest_member = $this->_get_latest_member();
 
 		$data = [
-			'title'                          => 'Edit Trade | Dashboard',
-			'content'                        => 'dashboard/main',
-			'sum_total_invest_trade_manager' => $sum_total_invest_trade_manager,
-			'sum_total_invest_crypto_asset'  => $sum_total_invest_crypto_asset,
-			'total_investment'               => number_format($total_investment, 8),
-			'count_total_member'             => number_format($count_total_member, 0),
-			'arr_member'                     => $arr_member,
+			'title'             => APP_NAME . ' | Dashboard',
+			'content'           => 'dashboard/main',
+			'card'              => $card,
+			'arr_latest_member' => $arr_latest_member,
 		];
 		$this->template->render($data);
+	}
+
+	protected function _card()
+	{
+		$arr_investment     = $this->_get_total_investment();
+		$arr_profit_bonus   = $this->_get_total_profit_bonus();
+		$arr_withdraw       = $this->_get_total_withdraw();
+		$arr_withdraw_today = $this->_get_today_withdraw();
+		$arr_member         = $this->_get_total_member();
+		$arr_coin_balance   = $this->_get_coin_balance();
+
+		$return  = compact('arr_investment', 'arr_profit_bonus', 'arr_withdraw', 'arr_withdraw_today', 'arr_member', 'arr_coin_balance');
+		return $return;
+	}
+
+	protected function _get_total_investment()
+	{
+		$arr_investment       = $this->M_dashboard->get_total_investment();
+		$arr_investment_today = $this->M_dashboard->get_total_investment_today();
+
+		$return = [
+			$arr_investment,
+			$arr_investment_today
+		];
+		return $return;
+	}
+
+	protected function _get_total_profit_bonus()
+	{
+		$arr = $this->M_dashboard->get_total_profit_bonus_member();
+		return $arr;
+	}
+
+	protected function _get_total_withdraw()
+	{
+		$arr_withdraw = $this->M_dashboard->get_total_withdraw();
+		return $arr_withdraw;
+	}
+
+	protected function _get_today_withdraw()
+	{
+		$arr_withdraw = $this->M_dashboard->get_today_withdraw();
+		return $arr_withdraw;
+	}
+
+	protected function _get_total_member()
+	{
+		$arr_member = $this->M_dashboard->get_total_member();
+		return $arr_member;
+	}
+
+	protected function _get_latest_member()
+	{
+		$arr_member = $this->M_dashboard->get_latest_member();
+		return $arr_member;
+	}
+
+	protected function _get_coin_balance()
+	{
+		$arr_coin_balance = $this->_coinpayments_api_call('balances', ['all' => 0]);
+
+		$bnb  = 0;
+		$trx  = 0;
+		$usdt = 0;
+		$ltct = 0;
+
+		if ($arr_coin_balance['error'] == "ok") {
+			$bnb  = ($arr_coin_balance['result']['BNB.BSC']['balancef']) ?? 0;
+			$trx  = ($arr_coin_balance['result']['TRX']['balancef']) ?? 0;
+			$usdt = ($arr_coin_balance['result']['USDT.ERC20']['balancef']) ?? 0;
+			$ltct = ($arr_coin_balance['result']['LTCT']['balancef']) ?? 0;
+		}
+		$return = compact('bnb', 'trx', 'usdt', 'ltct');
+		return $return;
 	}
 
 	/*

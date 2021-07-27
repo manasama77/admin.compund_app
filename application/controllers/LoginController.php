@@ -35,7 +35,6 @@ class LoginController extends CI_Controller
 			$check_session = $this->_check_session();
 			if ($check_session === true) {
 				redirect('dashboard');
-				exit;
 			}
 
 			$data = [

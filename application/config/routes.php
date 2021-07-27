@@ -25,6 +25,14 @@ $route['reset_password']         = 'ProfileController/reset_password';
 
 $route['trade_manager'] = 'TradeManagerController/index';
 
+$route['crypto_asset'] = 'CryptoAssetController/index';
+
+$route['withdraw'] = 'WithdrawController/index';
+
+$route['profit_trade_manager'] = 'ProfitTradeManagerController/index';
+
+$route['profit_crypto_asset'] = 'ProfitCryptoAssetController/index';
+
 $route['admin_management'] = 'AdminManagementController/index';
 $route['change_role']      = 'AdminManagementController/change_role';
 $route['change_status']    = 'AdminManagementController/change_status';

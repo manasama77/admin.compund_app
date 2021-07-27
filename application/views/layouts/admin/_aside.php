@@ -44,40 +44,34 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-house-user"></i>
+					<a href="<?= site_url('crypto_asset'); ?>" class="nav-link">
+						<i class="nav-icon fas fa-coins"></i>
 						<p>
 							Crypto Asset
-							<i class="right fas fa-angle-left"></i>
-							<span class="badge badge-success right">1</span>
 						</p>
 					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="<?= site_url('login'); ?> list_crypto_asset.html" class="nav-link">
-								<i class="fas fa-list nav-icon"></i>
-								<p>List Crypto Asset</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= site_url('login'); ?> add_crypto_asset.html" class="nav-link">
-								<i class="fas fa-plus nav-icon"></i>
-								<p>Add Crypto Asset</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= site_url('login'); ?> claim_reward.html" class="nav-link">
-								<i class="fas fa-gift nav-icon"></i>
-								<p>Claim Reward</p>
-							</a>
-						</li>
-					</ul>
 				</li>
 				<li class="nav-item">
-					<a href="<?= site_url('user/withdraw'); ?>" class="nav-link">
+					<a href="<?= site_url('withdraw'); ?>" class="nav-link">
 						<i class="nav-icon fas fa-wallet"></i>
 						<p>
 							Withdraw
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="<?= site_url('profit_trade_manager'); ?>" class="nav-link">
+						<i class="nav-icon fas fa-coins"></i>
+						<p>
+							Profit Trade Manager
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="<?= site_url('profit_crypto_asset'); ?>" class="nav-link">
+						<i class="nav-icon fas fa-coins"></i>
+						<p>
+							Profit Crypto Asset
 						</p>
 					</a>
 				</li>

@@ -17,4 +17,5 @@
 	<link rel="stylesheet" href="<?= base_url(); ?>public/plugin/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
 	<link href="<?= base_url(); ?>public/css/sweetalert2-theme-dark.css" rel="stylesheet">
+	<link rel="icon" href="https://cryptoperty.id/public/img/logo.png">
 </head>

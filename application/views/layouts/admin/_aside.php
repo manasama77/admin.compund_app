@@ -1,8 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-	<!-- Brand Logo -->
 	<a href="<?= site_url('dashboard'); ?>" class="brand-link">
-		<img src="<?= base_url('public/img/logo.png'); ?>" alt="EDI TRADE LOGO" class="img-fluid brand-image" style="opacity: .8; max-width: 60px;">
-		<span class="brand-text font-weight-bold text-white">EDITRADE</span>
+		<img src="https://cryptoperty.id/public/img/logo.png" alt="LOGO" class="img-fluid brand-image" style="opacity: .8; max-width: 60px;">
+		<span class="brand-text font-weight-bold text-white"><?= APP_NAME; ?></span>
 	</a>
 
 	<!-- Sidebar -->
@@ -37,28 +36,12 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link">
+					<a href="<?= site_url('trade_manager'); ?>" class="nav-link">
 						<i class="nav-icon fas fa-coins"></i>
 						<p>
 							Trade Manager
-							<i class="fas fa-angle-left right"></i>
-							<span class="badge badge-success right">1</span>
 						</p>
 					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="<?= site_url('trade_manager'); ?>" class="nav-link">
-								<i class="fas fa-robot nav-icon"></i>
-								<p>List Trade Manager</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= site_url('trade_manager/add'); ?>" class="nav-link">
-								<i class="fas fa-plus nav-icon"></i>
-								<p>Add Trade Manager</p>
-							</a>
-						</li>
-					</ul>
 				</li>
 				<li class="nav-item">
 					<a href="#" class="nav-link">

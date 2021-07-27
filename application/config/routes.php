@@ -23,7 +23,7 @@ $route['check_current_password'] = 'ProfileController/check_current_password';
 $route['update_password']        = 'ProfileController/update_password';
 $route['reset_password']         = 'ProfileController/reset_password';
 
-$route['trade_manager/add'] = 'TradeManager/add';
+$route['trade_manager'] = 'TradeManagerController/index';
 
 $route['admin_management'] = 'AdminManagementController/index';
 $route['change_role']      = 'AdminManagementController/change_role';

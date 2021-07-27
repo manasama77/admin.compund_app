@@ -15,6 +15,7 @@
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?= base_url(); ?>public/plugin/adminlte/dist/css/adminlte.min.css">
 	<link rel="stylesheet" href="<?= base_url(); ?>public/css/login.css">
+	<link rel="icon" href="https://cryptoperty.id/public/img/logo.png">
 </head>
 
 <body class="hold-transition login-page">

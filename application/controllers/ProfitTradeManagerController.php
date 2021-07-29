@@ -12,7 +12,6 @@ class ProfitTradeManagerController extends CI_Controller
 		$this->load->library('L_admin', null, 'template');
 		$this->load->model('M_profit_trade_manager');
 
-
 		$this->datetime = date('Y-m-d H:i:s');
 	}
 

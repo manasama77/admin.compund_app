@@ -60,8 +60,8 @@ class M_dashboard extends CI_Model
 	{
 		$arr_tm = $this->db
 			->select([
-				'SUM( amount_usd ) as sum_amount_usd',
-				'COUNT( amount_usd ) as count',
+				'SUM( amount_1 ) as sum_amount_usd',
+				'COUNT( amount_1 ) as count',
 			])
 			->from('member_trade_manager')
 			->where('deleted_at', null)
@@ -79,8 +79,8 @@ class M_dashboard extends CI_Model
 
 		$arr_ca = $this->db
 			->select([
-				'SUM( amount_usd ) as sum_amount_usd',
-				'COUNT( amount_usd ) as count',
+				'SUM( amount_1 ) as sum_amount_usd',
+				'COUNT( amount_1 ) as count',
 			])
 			->from('member_crypto_asset')
 			->where('deleted_at', null)

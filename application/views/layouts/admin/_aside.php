@@ -123,6 +123,22 @@
 						</p>
 					</a>
 				</li>
+				<li class="nav-item">
+					<a href="<?= site_url('konfigurasi_trade_manager'); ?>" class="nav-link">
+						<i class="nav-icon fas fa-cog"></i>
+						<p>
+							Konfigurasi Trade Manager
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="<?= site_url('konfigurasi_crypto_asset'); ?>" class="nav-link">
+						<i class="nav-icon fas fa-cog"></i>
+						<p>
+							Konfigurasi Crypto Asset
+						</p>
+					</a>
+				</li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->

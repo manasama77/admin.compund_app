@@ -55,6 +55,16 @@ $route['member_management/change_status'] = 'MemberController/change_status';
 
 $route['log/recruitment'] = 'LogRecruitmentController/index';
 
+$route['konfigurasi_trade_manager']                = 'KonfigurasiTradeManagerController/index';
+$route['konfigurasi_trade_manager/add']            = 'KonfigurasiTradeManagerController/add';
+$route['konfigurasi_trade_manager/detail_package'] = 'KonfigurasiTradeManagerController/detail_package';
+$route['konfigurasi_trade_manager/store']          = 'KonfigurasiTradeManagerController/store';
+
+$route['konfigurasi_crypto_asset']                = 'KonfigurasiCryptoAssetController/index';
+$route['konfigurasi_crypto_asset/add']            = 'KonfigurasiCryptoAssetController/add';
+$route['konfigurasi_crypto_asset/detail_package'] = 'KonfigurasiCryptoAssetController/detail_package';
+$route['konfigurasi_crypto_asset/store']          = 'KonfigurasiCryptoAssetController/store';
+
 $route['init']                               = 'Init/init';
 $route['base64']                             = 'Init/base64';
 $route['send_email']                         = 'SendEmail';

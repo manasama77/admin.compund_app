@@ -202,12 +202,14 @@ class FounderController extends CI_Controller
 		];
 		$exec = $this->M_core->store('member_reward', $data_reward);
 
-		$check = $this->_send_email_activation($id_member, $email);
+		if (ENVIRONMENT == "production") {
+			$check = $this->_send_email_activation($id_member, $email);
 
-		if ($check == "no") {
-			$this->db->trans_rollback();
-			echo json_encode(['code' => '500', 'msg' => 'Cannot Send Email, Please check your Email Address']);
-			exit;
+			if ($check == "no") {
+				$this->db->trans_rollback();
+				echo json_encode(['code' => '500', 'msg' => 'Cannot Send Email, Please check your Email Address']);
+				exit;
+			}
 		}
 
 		$this->db->trans_commit();

@@ -55,7 +55,7 @@
 												<td class="text-right"><?= $key['profit_self_per_day']; ?> <small>USDT</small></td>
 												<td class="text-right"><?= $key['profit_upline_per_day']; ?> <small>USDT</small></td>
 												<td class="text-right"><?= $key['profit_company_per_day']; ?> <small>USDT</small></td>
-												<td class="text-right"><?= $key['profit_asset']; ?> <small>USDT</small></td>
+												<td class="text-right"><?= $key['amount_profit']; ?> <small>USDT</small></td>
 												<td class="text-center"><?= $key['expired_at']; ?></td>
 												<td class="text-center"><?= ucwords($key['state']); ?></td>
 											</tr>

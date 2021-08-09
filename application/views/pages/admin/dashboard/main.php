@@ -1,4 +1,3 @@
-<!-- content-header -->
 <div class="content-header">
 	<div class="container-fluid">
 		<div class="row mb-2">
@@ -24,7 +23,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">Total Investments</span>
+						<span class="info-box-text">Total Investasi</span>
 						<span class="info-box-number">
 							<?= $card['arr_investment'][0]['total_investment']; ?> <small>USDT</small>
 						</span>
@@ -37,7 +36,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">Total Member Profit</span>
+						<span class="info-box-text">Total Profit Member</span>
 						<span class="info-box-number">
 							<?= $card['arr_profit_bonus']['sum_profit']; ?> <small>USDT</small>
 						</span>
@@ -50,7 +49,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">Total Member Bonus</span>
+						<span class="info-box-text">Total Bonus Member</span>
 						<span class="info-box-number">
 							<?= $card['arr_profit_bonus']['sum_bonus']; ?> <small>USDT</small>
 						</span>
@@ -67,7 +66,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Today Trade Manager</span>
+						<span class="info-box-text">Trade Manager Hari Ini</span>
 						<span class="info-box-number">
 							<?= $card['arr_investment'][1]['trade_manager']; ?> <small>USDT</small>
 						</span>
@@ -81,7 +80,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Today Count Trade Manager</span>
+						<span class="info-box-text">Jumlah Trade Manager Hari Ini</span>
 						<span class="info-box-number">
 							<?= $card['arr_investment'][1]['count_trade_manager']; ?>
 						</span>
@@ -95,7 +94,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Today Crypto Asset</span>
+						<span class="info-box-text">Crypto Asset Hari Ini</span>
 						<span class="info-box-number">
 							<?= $card['arr_investment'][1]['crypto_asset']; ?> <small>USDT</small>
 						</span>
@@ -109,7 +108,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Today Count Crypto Asset</span>
+						<span class="info-box-text">Jumlah Crypto Asset Hari Ini</span>
 						<span class="info-box-number">
 							<?= $card['arr_investment'][1]['count_crypto_asset']; ?>
 						</span>
@@ -140,7 +139,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Count Trade Managers</span>
+						<span class="info-box-text">Jumlah Trade Managers</span>
 						<span class="info-box-number">
 							<?= $card['arr_investment'][0]['sum_count_trade_manager']; ?>
 						</span>
@@ -168,7 +167,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Count Crypto Assets</span>
+						<span class="info-box-text">Jumlah Crypto Assets</span>
 						<span class="info-box-number">
 							<?= $card['arr_investment'][0]['sum_count_crypto_asset']; ?>
 						</span>
@@ -185,7 +184,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Members Active</span>
+						<span class="info-box-text">Member Aktif</span>
 						<span class="info-box-number">
 							<?= $card['arr_member']['member_active']; ?>
 						</span>
@@ -199,7 +198,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Members Inactive</span>
+						<span class="info-box-text">Member Tidak Aktif</span>
 						<span class="info-box-number">
 							<?= $card['arr_member']['member_inactive']; ?>
 						</span>
@@ -213,7 +212,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Members Deleted</span>
+						<span class="info-box-text">Member Dihapus</span>
 						<span class="info-box-number">
 							<?= $card['arr_member']['member_deleted']; ?>
 						</span>
@@ -227,7 +226,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Total Members</span>
+						<span class="info-box-text">Total Member</span>
 						<span class="info-box-number">
 							<?= $card['arr_member']['total_member']; ?>
 						</span>
@@ -244,7 +243,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Total WD Profit <small>USDT</small></span>
+						<span class="info-box-text">Total Penarikan Profit <small>USDT</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_withdraw']['sum_wd_profit_usdt']; ?> <small>USDT</small>
 						</span>
@@ -258,7 +257,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Total WD Profit <small>BNB</small></span>
+						<span class="info-box-text">Total Penarikan Profit <small>BNB</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_withdraw']['sum_wd_profit_bnb']; ?> <small>BNB</small>
 						</span>
@@ -272,7 +271,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Total WD Profit <small>TRX</small></span>
+						<span class="info-box-text">Total Penarikan Profit <small>TRX</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_withdraw']['sum_wd_profit_trx']; ?> <small>TRX</small>
 						</span>
@@ -286,7 +285,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Total WD Profit <small>LTCT</small></span>
+						<span class="info-box-text">Total Penarikan Profit <small>LTCT</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_withdraw']['sum_wd_profit_ltct']; ?> <small>LTCT</small>
 						</span>
@@ -303,7 +302,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Total WD Bonus <small>USDT</small></span>
+						<span class="info-box-text">Total Penarikan Bonus <small>USDT</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_withdraw']['sum_wd_bonus_usdt']; ?> <small>USDT</small>
 						</span>
@@ -317,7 +316,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Total WD Bonus <small>BNB</small></span>
+						<span class="info-box-text">Total Penarikan Bonus <small>BNB</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_withdraw']['sum_wd_bonus_bnb']; ?> <small>BNB</small>
 						</span>
@@ -331,7 +330,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Total WD Bonus <small>TRX</small></span>
+						<span class="info-box-text">Total Penarikan Bonus <small>TRX</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_withdraw']['sum_wd_bonus_trx']; ?> <small>TRX</small>
 						</span>
@@ -345,7 +344,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Total WD Bonus <small>LTCT</small></span>
+						<span class="info-box-text">Total Penarikan Bonus <small>LTCT</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_withdraw']['sum_wd_bonus_ltct']; ?> <small>LTCT</small>
 						</span>
@@ -362,125 +361,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Total WD Profit <small>USDT</small></span>
-						<span class="info-box-number">
-							<?= $card['arr_withdraw_today']['sum_wd_profit_usdt']; ?> <small>USDT</small>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="info-box mb-3">
-					<span class="info-box-icon bg-white">
-						<img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Binance-Coin-BNB-icon.png" alt="BNB">
-					</span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">Total WD Profit <small>BNB</small></span>
-						<span class="info-box-number">
-							<?= $card['arr_withdraw_today']['sum_wd_profit_bnb']; ?> <small>BNB</small>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="info-box mb-3">
-					<span class="info-box-icon bg-white">
-						<img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/TRON-TRX-icon.png" alt="TRX">
-					</span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">Total WD Profit <small>TRX</small></span>
-						<span class="info-box-number">
-							<?= $card['arr_withdraw_today']['sum_wd_profit_trx']; ?> <small>TRX</small>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="info-box mb-3">
-					<span class="info-box-icon bg-white">
-						<img src="https://cdn.coinranking.com/BUvPxmc9o/ltcnew.svg?size=48x48" alt="LTCT">
-					</span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">Total WD Profit <small>LTCT</small></span>
-						<span class="info-box-number">
-							<?= $card['arr_withdraw_today']['sum_wd_profit_ltct']; ?> <small>LTCT</small>
-						</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="clearfix hidden-md-up"></div>
-
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="info-box mb-3">
-					<span class="info-box-icon bg-white">
-						<img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Tether-USDT-icon.png" alt="USDT">
-					</span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">Today WD Bonus <small>USDT</small></span>
-						<span class="info-box-number">
-							<?= $card['arr_withdraw_today']['sum_wd_bonus_usdt']; ?> <small>USDT</small>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="info-box mb-3">
-					<span class="info-box-icon bg-white">
-						<img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Binance-Coin-BNB-icon.png" alt="BNB">
-					</span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">Today WD Bonus <small>BNB</small></span>
-						<span class="info-box-number">
-							<?= $card['arr_withdraw_today']['sum_wd_bonus_bnb']; ?> <small>BNB</small>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="info-box mb-3">
-					<span class="info-box-icon bg-white">
-						<img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/TRON-TRX-icon.png" alt="TRX">
-					</span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">Today WD Bonus <small>TRX</small></span>
-						<span class="info-box-number">
-							<?= $card['arr_withdraw_today']['sum_wd_bonus_trx']; ?> <small>TRX</small>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="info-box mb-3">
-					<span class="info-box-icon bg-white">
-						<img src="https://cdn.coinranking.com/BUvPxmc9o/ltcnew.svg?size=48x48" alt="LTCT">
-					</span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">Today WD Bonus <small>LTCT</small></span>
-						<span class="info-box-number">
-							<?= $card['arr_withdraw_today']['sum_wd_bonus_ltct']; ?> <small>LTCT</small>
-						</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="clearfix hidden-md-up"></div>
-
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="info-box mb-3">
-					<span class="info-box-icon bg-white">
-						<img src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Tether-USDT-icon.png" alt="USDT">
-					</span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">CoinPayment <small>USDT</small></span>
+						<span class="info-box-text">CoinPayments <small>USDT</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_coin_balance']['usdt']; ?> <small>USDT</small>
 						</span>
@@ -494,7 +375,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">CoinPayment <small>BNB</small></span>
+						<span class="info-box-text">CoinPayments <small>BNB</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_coin_balance']['bnb']; ?> <small>BNB</small>
 						</span>
@@ -508,7 +389,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">CoinPayment <small>TRX</small></span>
+						<span class="info-box-text">CoinPayments <small>TRX</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_coin_balance']['trx']; ?> <small>TRX</small>
 						</span>
@@ -522,7 +403,7 @@
 					</span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">CoinPayment <small>LTCT</small></span>
+						<span class="info-box-text">CoinPayments <small>LTCT</small></span>
 						<span class="info-box-number">
 							<?= $card['arr_coin_balance']['ltct']; ?> <small>LTCT</small>
 						</span>
@@ -538,7 +419,7 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Latest Member </h3>
+						<h3 class="card-title">Member Terbaru</h3>
 
 						<div class="card-tools">
 							<button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -551,10 +432,10 @@
 							<table class="table">
 								<thead>
 									<tr>
-										<th class="align-middle">Picture</th>
-										<th class="align-middle">Fullname</th>
+										<th class="text-center align-middle">PP</th>
+										<th class="align-middle">Nama Lengkap</th>
 										<th class="align-middle">Email</th>
-										<th class="align-middle">Phone Number</th>
+										<th class="align-middle">No Telepon</th>
 										<th class="text-center align-middle">Upline</th>
 										<th class="text-center align-middle">Total Asset</th>
 										<th class="text-center align-middle">Total Downline</th>
@@ -568,7 +449,6 @@
 									<?php if (count($arr_latest_member) > 0) : ?>
 										<?php
 										foreach ($arr_latest_member as $key) :
-											// $total_asset = $key->total_invest_trade_manager + $key->total_invest_crypto_asset;
 										?>
 
 											<tr>
@@ -616,7 +496,7 @@
 									<?php else : ?>
 
 										<tr>
-											<td colspan="8" class="text-center text-danger">- You Don't Have Any Friend On Your Circle -</td>
+											<td colspan="8" class="text-center text-danger">- Data Member Tidak Ditemukan -</td>
 										</tr>
 
 									<?php endif; ?>
@@ -627,7 +507,7 @@
 					</div>
 					<div class="card-footer text-center">
 						<?php if ($card['arr_member']['member_active'] > 10) : ?>
-							<a href="<?= site_url('member'); ?>" class="uppercase">View More...</a>
+							<a href="<?= site_url('member'); ?>" class="uppercase">Selengkapnya...</a>
 						<?php endif; ?>
 					</div>
 				</div>
@@ -635,4 +515,3 @@
 		</div>
 	</div>
 </section>
-<!-- /.Main Content -->

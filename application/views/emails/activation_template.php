@@ -358,7 +358,7 @@
 								<td class="logo" style="text-align: center;">
 									<h1>
 										<a href="<?= site_url(); ?>">
-											<img src="https://cryptoperty.id/public/img/logo.png" alt="<?= APP_NAME; ?> LOGO" title="<?= APP_NAME; ?>">
+											<img src="https://cryptoperty.id/public/img/logo.png" alt="<?= APP_NAME; ?>" title="<?= APP_NAME; ?>" style="width: 50px;">
 										</a>
 									</h1>
 								</td>
@@ -368,7 +368,7 @@
 				</tr><!-- end tr -->
 				<tr>
 					<td valign="middle" class="hero bg_white" style="padding: 1em 0 1em 0;">
-						<img src="https://cryptoperty.id/public/img/undraw_Checklist__re_2w7v.svg" alt="Logo Activation" style="width: 200px; max-width: 200px; height: auto; margin: auto; display: block;">
+						<img src="https://cryptoperty.id/public/img/undraw_Checklist__re_2w7v.svg" style="width: 100px; max-width: 100px; height: auto; margin: auto; display: block;">
 					</td>
 				</tr><!-- end tr -->
 				<tr>
@@ -377,7 +377,7 @@
 							<tr>
 								<td>
 									<div class="text" style="padding: 0 2.5em; text-align: center;">
-										<h3>Activate Your Account</h3>
+										<h3><b>Aktivasi Akun Anda</b></h3>
 										<h4><mark><a href="<?= SITE_URL_MEMBER ?>activate/<?= urlencode($email); ?>/<?= $activation_code; ?>"><?= SITE_URL_MEMBER ?>activate/<?= urlencode($email); ?>/<?= $activation_code; ?></a></mark></h4>
 									</div>
 								</td>

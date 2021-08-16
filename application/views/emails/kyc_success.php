@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
 	<meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
-	<title>Forgot Password</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+	<title>KYC Berhasil</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
 
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 
@@ -368,7 +368,7 @@
 				</tr><!-- end tr -->
 				<tr>
 					<td valign="middle" class="hero bg_white" style="padding: 1em 0 1em 0;">
-						<img src="https://cryptoperty.id/public/img/undraw_Checklist__re_2w7v.svg" alt="Logo Forgot Password" style="width: 200px; max-width: 200px; height: auto; margin: auto; display: block;">
+						<img src="https://cryptoperty.id/public/img/undraw_Checklist__re_2w7v.svg" alt="Logo Activation" style="width: 200px; max-width: 200px; height: auto; margin: auto; display: block;">
 					</td>
 				</tr><!-- end tr -->
 				<tr>
@@ -377,8 +377,7 @@
 							<tr>
 								<td>
 									<div class="text" style="padding: 0 2.5em; text-align: center;">
-										<h3>Reset Password</h3>
-										<h4><mark><a href="<?= site_url('reset_password/' . $email_decode . '/' . $forgot_password_code); ?>"><?= site_url('reset_password/' . $email_decode . '/' . $forgot_password_code); ?></a></mark></h4>
+										<h3>Proses KYC (Know Your Customer) Berhasil</h3>
 									</div>
 								</td>
 							</tr>

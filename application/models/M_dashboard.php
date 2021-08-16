@@ -402,71 +402,81 @@ class M_dashboard extends CI_Model
 		return $return;
 	}
 
-	public function get_latest_member()
+	public function get_latest_member($limit = NULL)
 	{
-		$arr = $this->db
-			->select([
-				'et_member.id',
-				'et_member.profile_picture',
-				'et_member.fullname',
-				'et_member.email',
-				'et_member.phone_number',
-				'et_member.created_at',
-				'tree.depth as generation',
-				'upline.fullname as fullname_upline',
-				'upline.email as email_upline',
-				'upline.phone_number as phone_number_upline',
-			])
-			->from('et_member')
-			->join('et_member as upline', 'upline.id = et_member.id_upline', 'left')
-			->join('et_tree as tree', 'tree.id_member = et_member.id', 'left')
-			->where('member.deleted_at', null)
-			->order_by('et_member.created_at', 'desc')
-			->limit(10)
-			->get();
-
-		if ($arr->num_rows() == 0) {
-			$return = [];
-		} else {
-			$return = [];
-			foreach ($arr->result() as $key) {
-				$id                  = $key->id;
-				$profile_picture     = base_url('public/img/pp/default_avatar.svg');
-				$fullname            = $key->fullname;
-				$email               = $key->email;
-				$phone_number        = $key->phone_number;
-				$created_at          = $key->created_at;
-				$generation          = $key->generation;
-				$fullname_upline     = $key->fullname_upline;
-				$email_upline        = $key->email_upline;
-				$phone_number_upline = $key->phone_number_upline;
-
-				$arr_balance = $this->db
-					->select('total_omset')
-					->from('member_balance')
-					->where('id_member', $id)
-					->get();
-
-				$total_asset = check_float($arr_balance->row()->total_omset);
-
-				$nested = [
-					'id'                  => $id,
-					'profile_picture'     => $profile_picture,
-					'fullname'            => $fullname,
-					'email'               => $email,
-					'phone_number'        => $phone_number,
-					'created_at'          => $created_at,
-					'generation'          => $generation,
-					'fullname_upline'     => $fullname_upline,
-					'email_upline'        => $email_upline,
-					'phone_number_upline' => $phone_number_upline,
-					'total_asset'         => $total_asset,
-				];
-
-				array_push($return, $nested);
-			}
+		if ($limit) {
+			$this->db->limit($limit);
 		}
 
+		$query = $this->db
+			->select([
+				'tree.lft',
+				'tree.rgt',
+				'tree.depth',
+				'member.id',
+				'member.user_id',
+				'member.profile_picture',
+				'member.fullname',
+				'member.email',
+				'member.phone_number',
+				'( SELECT upline.user_id FROM et_member AS upline WHERE upline.id = member.id ) AS upline_user_id',
+				'( SELECT upline.fullname FROM et_member AS upline WHERE upline.id = member.id ) AS upline_fullname',
+				'( SELECT upline.email FROM et_member AS upline WHERE upline.id = member.id ) AS upline_email',
+				'balance.total_omset',
+				'( SELECT count(*) FROM et_tree AS downline WHERE downline.lft > tree.lft AND downline.rgt < tree.rgt ) AS total_downline ',
+			])
+			->from('et_tree AS tree')
+			->join('et_member AS member', 'member.id = tree.id_member', 'left')
+			->join('et_member_balance AS balance', 'balance.id_member = tree.id_member', 'left')
+			->where('member.deleted_at', null)
+			->order_by('member.created_at', 'DESC')
+			->get();
+
+		if ($query->num_rows() == 0) {
+			return [];
+		}
+
+		$return = [];
+		$i      = 0;
+		foreach ($query->result() as $key) {
+			$lft                     = $key->lft;
+			$rgt                     = $key->rgt;
+			$depth                   = $key->depth;
+			$id                      = $key->id;
+			$user_id                 = $key->user_id;
+			$email                   = $key->email;
+			$profile_picture         = base_url() . 'public/img/pp/default_avatar.svg';
+			$fullname                = $key->fullname;
+			$user_id                 = $key->user_id;
+			$phone_number            = $key->phone_number;
+			$upline_user_id          = $key->upline_user_id;
+			$upline_fullname         = $key->upline_fullname;
+			$upline_email            = $key->upline_email;
+			$total_omset             = $key->total_omset;
+			$total_downline          = $key->total_downline;
+			$total_omset_formated    = check_float($key->total_omset);
+			$total_downline_formated = check_float($key->total_downline);
+
+			$return[$i++] = compact([
+				'lft',
+				'rgt',
+				'depth',
+				'id',
+				'user_id',
+				'profile_picture',
+				'user_id',
+				'fullname',
+				'email',
+				'phone_number',
+				'upline_fullname',
+				'upline_email',
+				'upline_user_id',
+				'total_omset',
+				'total_downline',
+				'total_omset_formated',
+				'total_downline_formated',
+			]);
+		}
 		return $return;
 	}
 
@@ -474,7 +484,9 @@ class M_dashboard extends CI_Model
 	{
 		$arr = $this->db
 			->select([
-				'SUM( balance.profit ) as sum_profit',
+				'SUM( balance.profit_paid ) as sum_profit_paid',
+				'SUM( balance.profit_unpaid ) as sum_profit_unpaid',
+				'SUM( balance.ratu ) as sum_ratu',
 				'SUM( balance.bonus ) as sum_bonus',
 			])
 			->from('member as member')
@@ -483,11 +495,111 @@ class M_dashboard extends CI_Model
 			->where('member.is_active', 'yes')
 			->get();
 
-		$sum_profit = check_float($arr->row()->sum_profit);
-		$sum_bonus  = check_float($arr->row()->sum_bonus);
+		$sum_profit_paid   = check_float($arr->row()->sum_profit_paid);
+		$sum_profit_unpaid = check_float($arr->row()->sum_profit_unpaid);
+		$sum_ratu          = check_float($arr->row()->sum_ratu);
+		$sum_bonus         = check_float($arr->row()->sum_bonus);
 
-		$return = compact('sum_profit', 'sum_bonus');
+		$return = compact('sum_profit_paid', 'sum_profit_unpaid', 'sum_ratu', 'sum_bonus');
 		return $return;
+	}
+
+	public function get_latest_downline($id_member, $depth = null, $limit = null)
+	{
+		$this->db->select("
+			member.id,
+			member.user_id,
+			member.profile_picture,
+			member.fullname,
+			member.email,
+			member.phone_number,
+			( SELECT upline.user_id FROM et_member AS upline WHERE upline.id = member.id_upline ) AS user_id_upline,
+			( SELECT upline.fullname FROM et_member AS upline WHERE upline.id = member.id_upline ) AS fullname_upline,
+			( SELECT upline.email FROM et_member AS upline WHERE upline.id = member.id_upline ) AS email_upline,
+			( tree.depth - ( SELECT self_tree.depth FROM et_tree AS self_tree WHERE self_tree.id_member = '$id_member' ) ) AS generation,
+			balance.self_omset,
+			balance.downline_omset,
+			balance.total_omset,
+			(
+			SELECT
+				count(*) 
+			FROM
+				et_member AS downline
+				LEFT JOIN et_tree AS downline_tree ON downline_tree.id_member = downline.id 
+			WHERE
+				downline_tree.lft > tree.lft 
+				AND downline_tree.rgt < tree.rgt 
+				AND downline.is_active = 'yes' 
+				AND downline.deleted_at IS NULL 
+			) AS total_downline
+		", false);
+		$this->db->from('et_member AS member');
+		$this->db->join('et_tree AS tree', 'tree.id_member = member.id', 'left');
+		$this->db->join('et_member_balance AS balance', 'balance.id_member = member.id', 'left');
+		$this->db->where('member.is_active', 'yes');
+		$this->db->where('member.deleted_at', null);
+		$this->db->where(
+			'tree.lft >',
+			"(SELECT lft FROM et_tree AS self_tree WHERE self_tree.id_member = '$id_member')",
+			false
+		);
+		$this->db->where(
+			'tree.rgt <',
+			"(SELECT rgt FROM et_tree AS self_tree WHERE self_tree.id_member = '$id_member')",
+			false
+		);
+
+		if ($depth != null) {
+			$this->db->where('tree.depth', $depth);
+		}
+
+		$this->db->order_by('member.created_at', 'DESC');
+
+		if ($limit != null) {
+			$this->db->limit($limit);
+		}
+
+		$query = $this->db->get();
+
+		$result = [];
+		if ($query->num_rows() > 0) {
+			foreach ($query->result() as $key) {
+				$id              = $key->id;
+				$user_id         = $key->user_id;
+				$profile_picture = ($key->profile_picture == NULL) ? base_url() . 'public/img/pp/default_avatar.svg' : base_url() . "public/img/pp/$key->profile_picture";
+				$fullname        = $key->fullname;
+				$email           = $key->email;
+				$phone_number    = $key->phone_number;
+				$user_id_upline  = $key->user_id_upline;
+				$fullname_upline = $key->fullname_upline;
+				$email_upline    = $key->email_upline;
+				$generation      = $key->generation;
+				$self_omset      = check_float($key->self_omset);
+				$downline_omset  = check_float($key->downline_omset);
+				$total_omset     = check_float($key->total_omset);
+				$total_downline  = check_float($key->total_downline);
+
+				$nested = [
+					'id'              => $id,
+					'user_id'         => $user_id,
+					'profile_picture' => $profile_picture,
+					'fullname'        => $fullname,
+					'email'           => $email,
+					'phone_number'    => $phone_number,
+					'user_id_upline'  => $user_id_upline,
+					'fullname_upline' => $fullname_upline,
+					'email_upline'    => $email_upline,
+					'generation'      => $generation,
+					'self_omset'      => $self_omset,
+					'downline_omset'  => $downline_omset,
+					'total_omset'     => $total_omset,
+					'total_downline'  => $total_downline,
+				];
+				array_push($result, $nested);
+			}
+		}
+
+		return $result;
 	}
 }
                         

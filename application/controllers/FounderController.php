@@ -30,66 +30,33 @@ class FounderController extends CI_Controller
 
 	public function index()
 	{
-		$id_admin = $this->session->userdata(SESI . 'id');
-		if ($id_admin) {
-			$arr_founder = [];
-			$arr = $this->M_member->get_list_founder();
-			if ($arr->num_rows() > 0) {
-				foreach ($arr->result() as $key) {
-					$id                         = $key->id;
-					$profile_picture            = $key->profile_picture;
-					$fullname                   = $key->fullname;
-					$email                      = $key->email;
-					$phone_number               = $key->phone_number;
-					$is_active                  = $key->is_active;
-					$total_invest_trade_manager = $key->total_invest_trade_manager;
-					$total_invest_crypto_asset  = $key->total_invest_crypto_asset;
-					$total_asset                = $total_invest_trade_manager + $total_invest_crypto_asset;
-					$count_downline             = $this->_tree_count_downline($id);
-
-					if (is_file(FCPATH . $profile_picture)) {
-						$pp = 'public/img/pp/' . $profile_picture;
-					} else {
-						$pp = "public/img/pp/default_avatar.svg";
-					}
-
-					$arr_nested = [
-						'id'                         => $id,
-						'profile_picture'            => $pp,
-						'fullname'                   => $fullname,
-						'email'                      => $email,
-						'phone_number'               => $phone_number,
-						'is_active'                  => $is_active,
-						'total_invest_trade_manager' => $total_invest_trade_manager,
-						'total_invest_crypto_asset'  => $total_invest_crypto_asset,
-						'total_asset'                => $total_asset,
-						'count_downline'             => $count_downline,
-					];
-
-					array_push($arr_founder, $arr_nested);
-				}
-			}
-		}
-
+		$arr_member = $this->_get_member();
 		$data = [
-			'title'       => APP_NAME . ' | Founder Management',
-			'content'     => 'founder/main',
-			'vitamin_js'  => 'founder/main_js',
-			'arr_founder' => $arr_founder,
+			'title'      => APP_NAME . ' | Founder',
+			'content'    => 'founder/main',
+			'vitamin_js' => 'founder/main_js',
+			'arr_member' => $arr_member,
 		];
 		$this->template->render($data);
+	}
+
+	protected function _get_member()
+	{
+		$arr_member = $this->M_member->get_list_founder();
+		return $arr_member;
 	}
 
 	public function store()
 	{
 		$this->db->trans_begin();
 
-		$email           = $this->input->post('email');
-		$password        = $this->input->post('password');
-		$verify_password = $this->input->post('verify_password');
 		$id_card_number  = $this->input->post('id_card_number');
 		$fullname        = $this->input->post('fullname');
 		$phone_number    = $this->input->post('phone_number');
+		$user_id         = $this->input->post('user_id');
+		$email           = $this->input->post('email');
+		$password        = $this->input->post('password');
+		$verify_password = $this->input->post('verify_password');
 
 		$check = $this->genuine_mail->check($email);
 		if ($check !== TRUE) {
@@ -98,30 +65,40 @@ class FounderController extends CI_Controller
 		}
 
 		$check = $this->M_core->count('member', ['id_card_number' => $id_card_number]);
-
 		if ($check >= 1) {
-			echo json_encode(['code' => '400', 'msg' => 'ID Card Number already registered']);
+			echo json_encode(['code' => '400', 'msg' => 'No KTP telah terdaftar']);
+			exit;
+		}
+
+		$check = $this->M_member->cek_user_id($user_id);
+		if ($check >= 1) {
+			echo json_encode(['code' => '400', 'msg' => 'User ID telah terdaftar']);
 			exit;
 		}
 
 		$check = $this->M_core->count('member', ['email' => $email]);
 
 		if ($check >= 1) {
-			echo json_encode(['code' => '400', 'msg' => 'Email already registered']);
+			echo json_encode(['code' => '400', 'msg' => 'Email telah terdaftar']);
 			exit;
 		}
 
 		if ($verify_password != $password) {
-			echo json_encode(['code' => '400', 'msg' => 'Password & Verify Password Different']);
+			echo json_encode(['code' => '400', 'msg' => 'Password & Verify Password Berbeda']);
 			exit;
 		}
 
 		$data = [
 			'email'                => $email,
 			'password'             => password_hash(UYAH . $password, PASSWORD_BCRYPT),
+			'user_id'              => $user_id,
 			'id_card_number'       => $id_card_number,
 			'fullname'             => $fullname,
 			'phone_number'         => $phone_number,
+			'address'              => null,
+			'postal_code'          => null,
+			'id_bank'              => null,
+			'no_rekening'          => null,
 			'id_upline'            => null,
 			'country_code'         => null,
 			'profile_picture'      => null,
@@ -130,9 +107,13 @@ class FounderController extends CI_Controller
 			'activation_code'      => null,
 			'forgot_password_code' => null,
 			'is_founder'           => 'yes',
+			'is_kyc'               => 'no',
 			'cookies'              => null,
 			'ip_address'           => null,
 			'user_agent'           => null,
+			'foto_ktp'             => null,
+			'foto_pegang_ktp'      => null,
+			'alasan'               => null,
 			'created_at'           => $this->datetime,
 			'updated_at'           => $this->datetime,
 			'deleted_at'           => null,
@@ -142,7 +123,7 @@ class FounderController extends CI_Controller
 
 		if (!$exec) {
 			$this->db->trans_rollback();
-			echo json_encode(['code' => '500', 'msg' => 'Cannot Connect to Database, please check your connection!']);
+			echo json_encode(['code' => '500', 'msg' => 'Tidak terhubung dengan Database, silahkan cek koneksi kamu!']);
 			exit;
 		}
 
@@ -156,8 +137,10 @@ class FounderController extends CI_Controller
 			'count_trade_manager'        => 0,
 			'total_invest_crypto_asset'  => 0,
 			'count_crypto_asset'         => 0,
-			'profit'                     => 0,
+			'profit_paid'                => 0,
+			'profit_unpaid'              => 0,
 			'bonus'                      => 0,
+			'ratu'                       => 0,
 			'self_omset'                 => 0,
 			'downline_omset'             => 0,
 			'total_omset'                => 0,
@@ -170,7 +153,7 @@ class FounderController extends CI_Controller
 
 		if (!$exec) {
 			$this->db->trans_rollback();
-			echo json_encode(['code' => '500', 'msg' => 'Cannot Connect to Database, please check your connection!']);
+			echo json_encode(['code' => '500', 'msg' => 'Tidak terhubung dengan Database, silahkan cek koneksi kamu!']);
 			exit;
 		}
 
@@ -178,7 +161,7 @@ class FounderController extends CI_Controller
 
 		if ($this->Nested_set->checkIsValidNode($add_tree_founder) == FALSE) {
 			$this->db->trans_rollback();
-			echo json_encode(['code' => '500', 'msg' => 'Cannot Connect to Database, please check your connection!']);
+			echo json_encode(['code' => '500', 'msg' => 'Tidak terhubung dengan Database, silahkan cek koneksi kamu!']);
 			exit;
 		}
 
@@ -207,16 +190,16 @@ class FounderController extends CI_Controller
 
 			if ($check == "no") {
 				$this->db->trans_rollback();
-				echo json_encode(['code' => '500', 'msg' => 'Cannot Send Email, Please check your Email Address']);
+				echo json_encode(['code' => '500', 'msg' => 'Tidak dapat mengirimkan email, silahkan cek alamat atau koneksi kamu!']);
 				exit;
 			}
 		}
 
 		$this->db->trans_commit();
-		echo json_encode(['code' => '200', 'msg' => 'Add Founder Success, Please inform Founder to check email']);
+		echo json_encode(['code' => '200', 'msg' => 'Tambah Founder Berhasil, silahkan informasikan Founder untuk cek email']);
 	}
 
-	public function _add_tree_founder($id_member, $email)
+	protected function _add_tree_founder($id_member, $email)
 	{
 		$data_hie = [
 			'id_member' => $id_member,
@@ -250,7 +233,7 @@ class FounderController extends CI_Controller
 		$this->M_log_send_email_admin->write_log($to, $subject, $message, $is_success);
 	}
 
-	public function _tree_count_downline($id_member)
+	protected function _tree_count_downline($id_member)
 	{
 		$where_member = ['id_member' => $id_member];
 		$data_member  = $this->Nested_set->getNodeWhere($where_member);
@@ -277,6 +260,28 @@ class FounderController extends CI_Controller
 		}
 
 		echo json_encode(['code' => $code]);
+	}
+
+	public function data_kyc()
+	{
+		header('Content-Type: application/json');
+
+		$id_member  = $this->input->get('id_member');
+		$arr_member = $this->M_member->get_list_founder($id_member);
+
+		if (!$arr_member) {
+			echo json_encode([
+				'code'       => 500,
+				'msg'        => "Data KYC Member Tidak Ditemukan",
+				'arr_member' => null,
+			]);
+			exit;
+		}
+		echo json_encode([
+			'code'       => 200,
+			'msg'        => null,
+			'arr_member' => $arr_member,
+		]);
 	}
 }
         

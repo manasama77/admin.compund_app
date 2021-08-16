@@ -1,13 +1,23 @@
+<style>
+	hr {
+		position: relative;
+		top: 5px;
+		border: none;
+		height: 5px;
+		background: black;
+		margin-bottom: 20px;
+	}
+</style>
 <section class="content-header">
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>Founder Management</h1>
+				<h1>Founder</h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
-					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active">Founder Management</li>
+					<li class="breadcrumb-item"><a href="<?= site_url('dashboard'); ?>">Beranda</a></li>
+					<li class="breadcrumb-item active">Founder</li>
 				</ol>
 			</div>
 		</div>
@@ -28,29 +38,53 @@
 							<table class="table table-bordered table-striped" id="table_data">
 								<thead>
 									<tr>
-										<th>Picture</th>
-										<th>Fullname</th>
+										<th class="text-center" style="min-width: 100px;">Tanggal Registrasi</th>
+										<th>KYC</th>
+										<th>User ID</th>
+										<th>Nama Lengkap</th>
 										<th>Email</th>
-										<th>Phone</th>
-										<th>Total Asset</th>
-										<th>Total Downline</th>
+										<th>No Telepon</th>
+										<th class="text-right">Total Asset</th>
+										<th class="text-right">Jumlah Trade Manager</th>
+										<th class="text-right">Total Trade Manager</th>
+										<th class="text-right">Jumlah Crypto Asset</th>
+										<th class="text-right">Total Crypto Asset</th>
+										<th class="text-right">Profit Paid</th>
+										<th class="text-right">Profit Unpaid</th>
+										<th class="text-right">Bonus</th>
+										<th class="text-right">Ratu</th>
+										<th class="text-center">Total Downline</th>
 										<th class="text-center">Status</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
-									foreach ($arr_founder as $key) :
+									foreach ($arr_member as $key) :
 										if ($key['is_active'] == "yes") {
 											$badge_color = 'badge-success';
-											$badge_text = 'Active';
+											$badge_text  = 'Active';
 										} else {
 											$badge_color = 'badge-dark';
-											$badge_text = 'Inactive';
+											$badge_text  = 'Inactive';
 										}
 									?>
 										<tr>
+											<td class="text-center">
+												<?= $key['created_at']; ?>
+											</td>
+											<td class="text-center">
+												<?php
+												if ($key['is_kyc'] == "check") {
+													echo '<button type="button" class="btn btn-sm btn-warning" onclick="modalKYC(\'' . $key['id'] . '\')">' . ucwords($key['is_kyc']) . '</button>';
+												} elseif ($key['is_kyc'] == "no") {
+													echo '<span class="badge badge-danger">' . ucwords($key['is_kyc']) . '</span>';
+												} elseif ($key['is_kyc'] == "yes") {
+													echo '<span class="badge badge-success">' . ucwords($key['is_kyc']) . '</span>';
+												}
+												?>
+											</td>
 											<td>
-												<img src="<?= base_url($key['profile_picture']); ?>" alt="Profile Picture" class="img-size-50">
+												<?= $key['user_id']; ?>
 											</td>
 											<td>
 												<?= $key['fullname']; ?>
@@ -61,14 +95,36 @@
 											<td>
 												<?= $key['phone_number']; ?>
 											</td>
-											<td>
-												<span class="badge badge-success">
-													<i class="fas fa-coin"></i> <?= check_float($key['total_asset']); ?> USDT
-												</span>
+											<td class="text-right">
+												<?= $key['total_omset']; ?>
 											</td>
-											<td>
+											<td class="text-right">
+												<?= $key['count_trade_manager']; ?>
+											</td>
+											<td class="text-right">
+												<?= $key['total_invest_trade_manager']; ?>
+											</td>
+											<td class="text-right">
+												<?= $key['count_crypto_asset']; ?>
+											</td>
+											<td class="text-right">
+												<?= $key['total_invest_crypto_asset']; ?>
+											</td>
+											<td class="text-right">
+												<?= $key['profit_paid']; ?>
+											</td>
+											<td class="text-right">
+												<?= $key['profit_unpaid']; ?>
+											</td>
+											<td class="text-right">
+												<?= $key['bonus']; ?>
+											</td>
+											<td class="text-right">
+												<?= $key['ratu']; ?>
+											</td>
+											<td class="text-center">
 												<span class="badge badge-warning">
-													<i class="fas fa-users"></i> <?= check_float($key['count_downline']); ?> Member
+													<i class="fas fa-users"></i> <?= $key['count_downline']; ?> Member
 												</span>
 											</td>
 											<td class="text-center">
@@ -86,36 +142,42 @@
 			<div class="col-sm-12 col-md-4">
 				<div class="card">
 					<div class="card-header">
-						Add Founder
+						Tambah Founder
 					</div>
 					<div class="card-body">
 						<form id="form_add">
 							<div class="form-group">
-								<label for="id_card_number">ID Card Number</label>
-								<input type="text" class="form-control" id="id_card_number" name="id_card_number" minlength="4" required>
+								<label for="id_card_number">No KTP</label>
+								<input type="text" class="form-control" id="id_card_number" name="id_card_number" minlength="4" maxlength="20" required>
 							</div>
 							<div class="form-group">
-								<label for="email">Email</label>
-								<input type="email" class="form-control" id="email" name="email" autocomplete="email" required>
-							</div>
-							<div class="form-group">
-								<label for="password">Password</label>
-								<input type="password" class="form-control" id="password" name="password" autocomplete="new-password" minlength="4" required>
-							</div>
-							<div class="form-group">
-								<label for="verify_password">Verify Password</label>
-								<input type="password" class="form-control" id="verify_password" name="verify_password" autocomplete="new-password" minlength="4" required>
-							</div>
-							<hr>
-							<div class="form-group">
-								<label for="fullname">Name</label>
+								<label for="fullname">Nama Lengkap</label>
 								<input type="text" class="form-control" id="fullname" name="fullname" autocomplete="name" minlength="3" required>
 							</div>
 							<div class="form-group">
-								<label for="phone_number">Phone Number</label>
+								<label for="phone_number">No Telepon</label>
 								<input type="tel" class="form-control" id="phone_number" name="phone_number" autocomplete="tel" minlength="4" required>
 							</div>
-							<button type="submit" class="btn btn-primary btn-block">Submit</button>
+
+							<hr>
+
+							<div class="form-group">
+								<label for="user_id">User ID</label>
+								<input type="text" class="form-control" id="user_id" name="user_id" minlength="8" maxlength="8" required>
+							</div>
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" class="form-control" id="email" name="email" autocomplete="email" minlength="5" maxlength="100" required>
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" class="form-control" id="password" name="password" autocomplete="new-password" minlength="4" maxlength="16" required>
+							</div>
+							<div class="form-group">
+								<label for="verify_password">Verify Password</label>
+								<input type="password" class="form-control" id="verify_password" name="verify_password" autocomplete="new-password" minlength="4" maxlength="16" required>
+							</div>
+							<button type="submit" class="btn btn-primary btn-block">Tambah Founder</button>
 						</form>
 					</div>
 				</div>
@@ -125,30 +187,88 @@
 	</div>
 </section>
 
-<form id="form_reset">
-	<div class="modal fade" id="modal_reset" data-backdrop="static" data-keyboard="false" tabindex="-1">
+<div class="modal fade" id="modal_kyc" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Data KYC</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table">
+					<div class="thead">
+						<tr>
+							<th>Nama Lengkap</th>
+							<th id="s_fullname"></th>
+						</tr>
+						<tr>
+							<th>No KTP</th>
+							<th id="s_id_card_number"></th>
+						</tr>
+						<tr>
+						<tr>
+							<th>Negara</th>
+							<th id="s_country_code"></th>
+						</tr>
+						<tr>
+							<th>Alamat</th>
+							<th id="s_address"></th>
+						</tr>
+						<tr>
+							<th>Kode POS</th>
+							<th id="s_postal_code"></th>
+						</tr>
+						<tr>
+							<th>Bank</th>
+							<th id="s_nama_bank"></th>
+						</tr>
+						<tr>
+							<th>No Rekening</th>
+							<th id="s_no_rekening"></th>
+						</tr>
+						<tr>
+							<th>Foto KTP</th>
+							<th id="s_foto_ktp"></th>
+						</tr>
+						<tr>
+							<th>Foto Pegang KTP</th>
+							<th id="s_foto_pegang_ktp"></th>
+						</tr>
+					</div>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<input type="hidden" id="s_id_member" name="id_member" />
+				<button type="button" id="btn_terima_kyc" class="btn btn-primary" onclick="terimaKYC()">Terima KYC</button>
+				<button type="button" class="btn btn-danger" onclick="modalTolakKYC()">Tolak KYC</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<form id="form_tolak_kyc">
+	<div class="modal fade" id="modal_tolak_kyc" data-backdrop="static" data-keyboard="false" tabindex="-1">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">Reset Password</h5>
+					<h5 class="modal-title" id="staticBackdropLabel">Alasan Tolak KYC</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="email_reset">Email</label>
-						<input type="text" class="form-control" id="email_reset" name="email_reset" required readonly>
-					</div>
-					<div class="form-group">
-						<label for="password_reset">New Password</label>
-						<input type="password" class="form-control" id="password_reset" name="password_reset" required>
+						<label for="alasan">Alasan</label>
+						<textarea class="form-control" name="alasan" id="alasan" cols="30" rows="3" placeholder="Masukan Alasan Penolakan KYC" required></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" id="id_reset" name="id_reset">
+					<input type="hidden" id="id_member_tolak" name="id_member" />
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button id="btn_tolak_kyc" type="submit" class="btn btn-danger">Proses Tolak KYC</button>
 				</div>
 			</div>
 		</div>

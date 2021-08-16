@@ -32,7 +32,7 @@ class MemberController extends CI_Controller
 		$arr_member = $this->_get_member();
 
 		$data = [
-			'title'      => APP_NAME . ' | Member Management',
+			'title'      => APP_NAME . ' | Member',
 			'content'    => 'member/main',
 			'vitamin_js' => 'member/main_js',
 			'arr_member' => $arr_member,
@@ -211,6 +211,180 @@ class MemberController extends CI_Controller
 		}
 
 		echo json_encode(['code' => $code]);
+	}
+
+	public function data_kyc()
+	{
+		header('Content-Type: application/json');
+
+		$id_member  = $this->input->get('id_member');
+		$arr_member = $this->M_member->get_list_member($id_member);
+
+		if (!$arr_member) {
+			echo json_encode([
+				'code'       => 500,
+				'msg'        => "Data KYC Member Tidak Ditemukan",
+				'arr_member' => null,
+			]);
+			exit;
+		}
+		echo json_encode([
+			'code'       => 200,
+			'msg'        => null,
+			'arr_member' => $arr_member,
+		]);
+	}
+
+	public function terima_kyc()
+	{
+		$this->db->trans_begin();
+
+		$id_member = $this->input->post('id_member');
+		$data      = ['is_kyc' => 'yes'];
+		$where     = ['id'     => $id_member];
+		$exec = $this->M_core->update('member', $data, $where);
+
+		if (!$exec) {
+			$this->db->trans_rollback();
+
+			echo json_encode([
+				'code' => 500,
+				'msg'  => "Proses KYC Gagal, silahkan coba kembali",
+			]);
+			exit;
+		}
+
+		$email = $this->M_core->get('member', 'email', ['id' => $id_member])->row()->email;
+		$send_email = $this->_send_notif_kyc_success($email);
+
+		if ($send_email == false) {
+			$this->db->trans_rollback();
+
+			echo json_encode([
+				'code' => 500,
+				'msg'  => "Proses Kirim Email Gagal, silahkan coba kembali",
+			]);
+			exit;
+		}
+
+		$this->db->trans_commit();
+		echo json_encode([
+			'code' => 200,
+			'msg'  => "Proses Terima KYC Berhasil",
+		]);
+	}
+
+	protected function _send_notif_kyc_success($to)
+	{
+		$subject = APP_NAME . " | Proses KYC Berhasil";
+		$message = "";
+
+		$this->email->set_newline("\r\n");
+		$this->email->from($this->from, $this->from_alias);
+		$this->email->to($to);
+		$this->email->subject($subject);
+
+		$message = $this->load->view('emails/kyc_success', null, TRUE);
+		$this->email->message($message);
+
+		$is_success = ($this->email->send()) ? 'yes' : 'no';
+
+		$this->M_log_send_email_admin->write_log($to, $subject, $message, $is_success);
+
+		if ($is_success == "yes") {
+			return true;
+		}
+
+		return false;
+	}
+
+	public function tolak_kyc()
+	{
+		$this->db->trans_begin();
+
+		$id_member = $this->input->post('id_member');
+
+		$arr_foto = $this->M_core->get('member', 'foto_ktp, foto_pegang_ktp', ['id' => $id_member]);
+
+		$foto_ktp        = $arr_foto->row()->foto_ktp;
+		$foto_pegang_ktp = $arr_foto->row()->foto_pegang_ktp;
+
+		if ($foto_ktp != null) {
+			unlink(MEMBER_PATH . "/protected/ktp/" . $foto_ktp);
+		}
+
+		if ($foto_pegang_ktp != null) {
+			unlink(MEMBER_PATH . "/protected/member/" . $foto_pegang_ktp);
+		}
+
+		$alasan    = trim($this->input->post('alasan'));
+		$data      = [
+			'is_kyc'          => 'no',
+			'id_card_number'  => null,
+			'address'         => null,
+			'postal_code'     => null,
+			'id_bank'         => null,
+			'no_rekening'     => null,
+			'foto_ktp'        => null,
+			'foto_pegang_ktp' => null,
+			'alasan'          => $alasan,
+		];
+		$where = ['id' => $id_member];
+		$exec  = $this->M_core->update('member', $data, $where);
+
+		if (!$exec) {
+			$this->db->trans_rollback();
+
+			echo json_encode([
+				'code' => 500,
+				'msg'  => "Proses KYC Gagal, silahkan coba kembali",
+			]);
+			exit;
+		}
+
+		$email = $this->M_core->get('member', 'email', ['id' => $id_member])->row()->email;
+		$send_email = $this->_send_notif_kyc_reject($email, $alasan);
+
+		if ($send_email == false) {
+			$this->db->trans_rollback();
+
+			echo json_encode([
+				'code' => 500,
+				'msg'  => "Proses Kirim Email Gagal, silahkan coba kembali",
+			]);
+			exit;
+		}
+
+		$this->db->trans_commit();
+		echo json_encode([
+			'code' => 200,
+			'msg'  => "Proses Tolak KYC",
+		]);
+	}
+
+	protected function _send_notif_kyc_reject($to, $alasan)
+	{
+		$subject = APP_NAME . " | Proses KYC Ditolak";
+		$message = "";
+
+		$this->email->set_newline("\r\n");
+		$this->email->from($this->from, $this->from_alias);
+		$this->email->to($to);
+		$this->email->subject($subject);
+
+		$data['alasan'] = $alasan;
+		$message = $this->load->view('emails/kyc_failed', $data, TRUE);
+		$this->email->message($message);
+
+		$is_success = ($this->email->send()) ? 'yes' : 'no';
+
+		$this->M_log_send_email_admin->write_log($to, $subject, $message, $is_success);
+
+		if ($is_success == "yes") {
+			return true;
+		}
+
+		return false;
 	}
 }
         

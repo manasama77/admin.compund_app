@@ -14,6 +14,7 @@ class LoginController extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library('L_genuine_mail', null, 'genuine_mail');
 		$this->load->helper(['cookie', 'string', 'otp_helper', 'domain_helper']);
 		$this->load->model('M_log_send_email_admin');
 
@@ -388,7 +389,7 @@ class LoginController extends CI_Controller
 			'deleted_at' => null,
 		];
 
-		$count = $this->M_core->count('member', $where);
+		$count = $this->M_core->count('admin', $where);
 
 		if ($count == 0) {
 			return false;

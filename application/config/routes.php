@@ -15,7 +15,8 @@ $route['forgot_password']				= 'LoginController/forgot_password';
 $route['send_forgot_password']			= 'LoginController/send_forgot_password';
 $route['reset_password/(:any)/(:any)'] 	= 'LoginController/reset_password/$1/$2';
 
-$route['dashboard'] = 'DashboardController/index';
+$route['dashboard']                 = 'DashboardController/index';
+$route['dashboard/downline_detail'] = 'DashboardController/downline_detail';
 
 $route['profile']                = 'ProfileController/index';
 $route['setting_update']         = 'ProfileController/setting_update';
@@ -48,10 +49,14 @@ $route['delete_admin']     = 'AdminManagementController/delete_admin';
 $route['founder']               = 'FounderController/index';
 $route['founder/store']         = 'FounderController/store';
 $route['founder/change_status'] = 'FounderController/change_status';
+$route['founder/data_kyc']      = 'FounderController/data_kyc';
 
-$route['member_management']       = 'MemberController/index';
-$route['member_management/store'] = 'MemberController/store';
+$route['member_management']               = 'MemberController/index';
+$route['member_management/store']         = 'MemberController/store';
 $route['member_management/change_status'] = 'MemberController/change_status';
+$route['member/data_kyc']                 = 'MemberController/data_kyc';
+$route['member/terima_kyc']               = 'MemberController/terima_kyc';
+$route['member/tolak_kyc']                = 'MemberController/tolak_kyc';
 
 $route['log/recruitment'] = 'LogRecruitmentController/index';
 

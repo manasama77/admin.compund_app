@@ -43,6 +43,7 @@ class DashboardController extends CI_Controller
 		$data = [
 			'title'             => APP_NAME . ' | Dashboard',
 			'content'           => 'dashboard/main',
+			'vitamin_js'        => 'dashboard/main_js',
 			'card'              => $card,
 			'arr_latest_member' => $arr_latest_member,
 		];
@@ -100,7 +101,7 @@ class DashboardController extends CI_Controller
 
 	protected function _get_latest_member()
 	{
-		$arr_member = $this->M_dashboard->get_latest_member();
+		$arr_member = $this->M_dashboard->get_latest_member(10);
 		return $arr_member;
 	}
 
@@ -121,6 +122,150 @@ class DashboardController extends CI_Controller
 		}
 		$return = compact('bnb', 'trx', 'usdt', 'ltct');
 		return $return;
+	}
+
+	public function downline_detail()
+	{
+		header('Content-Type: application/json');
+
+		$id_member = $this->input->get('id_member');
+
+		// TRADE MANAGER START
+		$where_package_tm = [
+			'id_member'  => $id_member,
+			'deleted_at' => null,
+		];
+		$arr_package_tm = $this->M_core->get('member_trade_manager', '*', $where_package_tm);
+
+		$data_package_tm = [];
+		if ($arr_package_tm->num_rows() > 0) {
+			foreach ($arr_package_tm->result() as $key) {
+				$package_name     = $key->package_name;
+				$amount_1         = check_float($key->amount_1);
+				$share_self_value = check_float($key->share_self_value);
+				$expired_package  = $key->expired_package;
+				$state            = $key->state;
+
+				$now_obj     = new DateTime('now');
+				$expired_obj = new DateTime($expired_package);
+				$diff        = $now_obj->diff($expired_obj);
+
+				if ($diff->format('%r') == "-") {
+					$duration = $diff->format('+%a hari tidak aktif');
+				} else {
+					$duration = $diff->format('%r%a hari lagi');
+				}
+
+				if ($state == "waiting payment") {
+					$badge_color = 'info';
+					$text        = "Menunggu Pembayaran";
+				} elseif ($state == "pending") {
+					$badge_color = 'secondary';
+					$text        = "Pembayaran Sedang Diproses";
+				} elseif ($state == "active") {
+					$badge_color = 'success';
+					$text        = "Aktif";
+				} elseif ($state == "inactive") {
+					$badge_color = 'dark';
+					$text        = "Tidak Aktif";
+				} elseif ($state == "cancel") {
+					$badge_color = 'warning';
+					$text        = "Transaksi Dibatalkan";
+				} elseif ($state == "expired") {
+					$badge_color = 'danger';
+					$text        = "Pembayaran Melewati Batas Waktu";
+				}
+
+				$status_badge = '<span class="badge badge-' . $badge_color . '">' . ucwords($text) . '</span>';
+
+				$nested = [
+					'package'        => $package_name,
+					'amount'         => $amount_1,
+					'profit_per_day' => $share_self_value,
+					'duration'       => $duration,
+					'status'         => $status_badge,
+				];
+
+				array_push($data_package_tm, $nested);
+			}
+		}
+		// TRADE MANAGER END
+
+		// CRYPTO ASSET START
+		$where_package_ca = [
+			'id_member'  => $id_member,
+			'deleted_at' => null,
+		];
+		$arr_package_ca = $this->M_core->get('member_crypto_asset', '*', $where_package_ca);
+
+		$data_package_ca = [];
+		if ($arr_package_ca->num_rows() > 0) {
+			foreach ($arr_package_ca->result() as $key) {
+				$package_name     = $key->package_name;
+				$amount_1         = check_float($key->amount_1);
+				$share_self_value = check_float($key->share_self_value);
+				$expired_package  = $key->expired_package;
+				$state            = $key->state;
+
+				$now_obj     = new DateTime('now');
+				$expired_obj = new DateTime($expired_package);
+				$diff        = $now_obj->diff($expired_obj);
+
+				if ($diff->format('%r') == "-") {
+					$duration = $diff->format('+%a hari tidak aktif');
+				} else {
+					$duration = $diff->format('%r%a hari lagi');
+				}
+
+				if ($state == "waiting payment") {
+					$badge_color = 'info';
+					$text        = "Menunggu Pembayaran";
+				} elseif ($state == "pending") {
+					$badge_color = 'secondary';
+					$text        = "Pembayaran Sedang Diproses";
+				} elseif ($state == "active") {
+					$badge_color = 'success';
+					$text        = "Aktif";
+				} elseif ($state == "inactive") {
+					$badge_color = 'dark';
+					$text        = "Tidak Aktif";
+				} elseif ($state == "cancel") {
+					$badge_color = 'warning';
+					$text        = "Transaksi Dibatalkan";
+				} elseif ($state == "expired") {
+					$badge_color = 'danger';
+					$text        = "Pembayaran Melewati Batas Waktu";
+				}
+
+				$status_badge = '<span class="badge badge-' . $badge_color . '">' . ucwords($text) . '</span>';
+
+				$nested = [
+					'package'        => $package_name,
+					'amount'         => $amount_1,
+					'profit_per_day' => $share_self_value,
+					'duration'       => $duration,
+					'status'         => $status_badge,
+				];
+
+				array_push($data_package_ca, $nested);
+			}
+		}
+		// CRYPTO ASSET START
+
+		$data_downline = $this->_latest_downline($id_member);
+
+		echo json_encode([
+			'code'            => 200,
+			'data_package_tm' => $data_package_tm,
+			'data_package_ca' => $data_package_ca,
+			'data_downline'   => $data_downline,
+		]);
+	}
+
+	protected function _latest_downline($id_member)
+	{
+		$arr = $this->M_dashboard->get_latest_downline($id_member, null, 5);
+		return $arr;
 	}
 
 	/*

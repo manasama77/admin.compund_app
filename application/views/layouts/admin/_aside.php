@@ -103,7 +103,7 @@
 					<a href="<?= site_url('member_management'); ?>" class="nav-link">
 						<i class="nav-icon fas fa-users"></i>
 						<p>
-							Member Management
+							Member
 						</p>
 					</a>
 				</li>
@@ -111,7 +111,7 @@
 					<a href="<?= site_url('founder'); ?>" class="nav-link">
 						<i class="nav-icon fas fa-user-tie"></i>
 						<p>
-							Founder Management
+							Founder
 						</p>
 					</a>
 				</li>

@@ -139,6 +139,14 @@
 						</p>
 					</a>
 				</li>
+				<li class="nav-item">
+					<a href="<?= site_url('konfigurasi/aplikasi'); ?>" class="nav-link">
+						<i class="nav-icon fas fa-cog"></i>
+						<p>
+							Konfigurasi Aplikasi
+						</p>
+					</a>
+				</li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->

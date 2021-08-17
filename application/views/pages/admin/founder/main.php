@@ -147,10 +147,6 @@
 					<div class="card-body">
 						<form id="form_add">
 							<div class="form-group">
-								<label for="id_card_number">No KTP</label>
-								<input type="text" class="form-control" id="id_card_number" name="id_card_number" minlength="4" maxlength="20" required>
-							</div>
-							<div class="form-group">
 								<label for="fullname">Nama Lengkap</label>
 								<input type="text" class="form-control" id="fullname" name="fullname" autocomplete="name" minlength="3" required>
 							</div>

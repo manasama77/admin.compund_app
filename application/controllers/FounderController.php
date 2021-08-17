@@ -50,7 +50,6 @@ class FounderController extends CI_Controller
 	{
 		$this->db->trans_begin();
 
-		$id_card_number  = $this->input->post('id_card_number');
 		$fullname        = $this->input->post('fullname');
 		$phone_number    = $this->input->post('phone_number');
 		$user_id         = $this->input->post('user_id');
@@ -61,12 +60,6 @@ class FounderController extends CI_Controller
 		$check = $this->genuine_mail->check($email);
 		if ($check !== TRUE) {
 			echo json_encode(['code' => '400', 'msg' => $check]);
-			exit;
-		}
-
-		$check = $this->M_core->count('member', ['id_card_number' => $id_card_number]);
-		if ($check >= 1) {
-			echo json_encode(['code' => '400', 'msg' => 'No KTP telah terdaftar']);
 			exit;
 		}
 
@@ -92,7 +85,6 @@ class FounderController extends CI_Controller
 			'email'                => $email,
 			'password'             => password_hash(UYAH . $password, PASSWORD_BCRYPT),
 			'user_id'              => $user_id,
-			'id_card_number'       => $id_card_number,
 			'fullname'             => $fullname,
 			'phone_number'         => $phone_number,
 			'address'              => null,

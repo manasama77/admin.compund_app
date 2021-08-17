@@ -70,6 +70,9 @@ $route['konfigurasi_crypto_asset/add']            = 'KonfigurasiCryptoAssetContr
 $route['konfigurasi_crypto_asset/detail_package'] = 'KonfigurasiCryptoAssetController/detail_package';
 $route['konfigurasi_crypto_asset/store']          = 'KonfigurasiCryptoAssetController/store';
 
+$route['konfigurasi/aplikasi']        = 'KonfigurasiAplikasi/index';
+$route['konfigurasi/aplikasi/update'] = 'KonfigurasiAplikasi/update';
+
 $route['init']                               = 'Init/init';
 $route['base64']                             = 'Init/base64';
 $route['send_email']                         = 'SendEmail';

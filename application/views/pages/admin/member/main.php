@@ -34,6 +34,7 @@
 										<th>Nama Lengkap</th>
 										<th>Email</th>
 										<th>No Telepon</th>
+										<th>Upline</th>
 										<th class="text-right">Total Asset</th>
 										<th class="text-right">Jumlah Trade Manager</th>
 										<th class="text-right">Total Trade Manager</th>
@@ -84,6 +85,9 @@
 											</td>
 											<td>
 												<?= $key['phone_number']; ?>
+											</td>
+											<td>
+												<?= $key['upline_user_id']; ?>
 											</td>
 											<td class="text-right">
 												<?= $key['total_omset']; ?>

@@ -23,7 +23,7 @@
 					<div class="card-header">
 						<h3 class="card-title">List Konfigurasi Trade Manager</h3>
 						<div class="card-tools">
-							<a href="<?= site_url('konfigurasi_trade_manager/add'); ?>" class="btn btn-primary btn-sm">
+							<a href="<?= site_url('trade_manager/konfigurasi/add'); ?>" class="btn btn-primary btn-sm">
 								<i class="fas fa-plus"></i> Tambah Konfigurasi Trade Manager
 							</a>
 						</div>
@@ -83,8 +83,8 @@
 												</td>
 												<td class="text-center">
 													<?php $disabled = ($key['is_active'] == "yes") ? "disabled" : ""; ?>
-													<a href="site_url('config_trade_manager/edit/' . $key['id'])" class="btn btn-info btn-sm <?= $disabled; ?>">
-														Edit
+													<a href="<?= site_url('trade_manager/konfigurasi/destroy/' . $key['id']); ?>" class="btn btn-danger btn-sm <?= $disabled; ?>">
+														Delete
 													</a>
 												</td>
 											</tr>

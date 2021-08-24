@@ -37,7 +37,7 @@
 		id_package_trade_manager.on('change', function() {
 			if (id_package_trade_manager.val() != "") {
 				$.ajax({
-					url: '<?= site_url('konfigurasi_trade_manager/detail_package'); ?>',
+					url: '<?= site_url('trade_manager/konfigurasi/detail_package'); ?>',
 					method: 'get',
 					dataType: 'json',
 					data: {
@@ -169,7 +169,7 @@
 
 	function storeNewRules() {
 		$.ajax({
-			url: '<?= site_url('konfigurasi_trade_manager/store'); ?>',
+			url: '<?= site_url('trade_manager/konfigurasi/store'); ?>',
 			method: 'post',
 			dataType: 'json',
 			data: form.serialize(),
@@ -210,7 +210,7 @@
 					showCancelButton: false,
 					showConfirmButton: false,
 				}).then(() => {
-					window.location.replace('<?= site_url('konfigurasi_trade_manager'); ?>');
+					window.location.replace('<?= site_url('trade_manager/konfigurasi'); ?>');
 				});
 			}
 		});

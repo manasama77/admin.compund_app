@@ -6,7 +6,7 @@
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
-					<li class="breadcrumb-item"><a href="<?= site_url('konfigurasi_trade_manager'); ?>">Konfigurasi Trade Manager</a></li>
+					<li class="breadcrumb-item"><a href="<?= site_url('trade_manager/konfigurasi'); ?>">Konfigurasi Trade Manager</a></li>
 					<li class="breadcrumb-item active">Tambah Konfigurasi Trade Manager</li>
 				</ol>
 			</div>
@@ -208,7 +208,7 @@
 
 				<div class="col-12">
 					<button type="submit" class="btn btn-primary btn-block">Submit</button>
-					<a href="<?= site_url('konfigurasi_trade_manager'); ?>" class="btn btn-secondary btn-block">Back to List</a>
+					<a href="<?= site_url('trade_manager/konfigurasi'); ?>" class="btn btn-secondary btn-block">Back to List</a>
 				</div>
 
 			</div>

@@ -118,6 +118,22 @@ class KonfigurasiTradeManagerController extends CI_Controller
 
 		echo json_encode($return);
 	}
+
+	public function destroy($id = null)
+	{
+		if ($id == null) {
+			return show_404();
+		}
+
+		$data = ['deleted_at' => $this->datetime];
+		$where = [
+			'id' => $id,
+			'is_active' => 'no',
+		];
+		$this->M_core->update('konfigurasi_trade_manager', $data, $where);
+
+		redirect('trade_manager/konfigurasi');
+	}
 }
         
 /* End of file  KonfigurasiTradeManagerController.php */

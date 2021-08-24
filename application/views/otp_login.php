@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="<?= base_url(); ?>public/plugin/adminlte/dist/css/adminlte.min.css">
 	<link href="<?= base_url(); ?>public/css/sweetalert2-theme-dark.css" rel="stylesheet">
 	<link href="<?= base_url(); ?>public/css/toastr.min.css" rel="stylesheet">
+	<link rel="icon" href="<?= base_url(); ?>public/img/logo.png">
 </head>
 
 <body>
@@ -26,20 +27,20 @@
 				<form id="form_otp">
 					<div class="card">
 						<div class="card-header">
-							Form OTP - Login
+							Verifikasi OTP <i>(One Time Password)</i>
 						</div>
 						<div class="card-body">
-							<div class="form-group">
+							<div class="form-group text-center">
 								<label for="otp">OTP</label>
-								<input type="number" class="form-control mb-2" id="otp" name="otp" min="100000" max="999999" placeholder="000000" autofocus required>
-								<span class="help-block"><small>We already sent OTP to <kbd><?= $this->session->userdata(SESI . 'email'); ?></kbd></small></span>
+								<input type="text" class="form-control mb-2" id="otp" name="otp" minlength="6" maxlength="6" placeholder="000000" inputmode="numeric" autofocus required>
+								<span class="help-block"><small>Sistem telah mengirimkan kode OTP pada alamat email <kbd><?= $this->session->userdata(SESI . 'email'); ?></kbd></small></span>
 							</div>
 							<button type="button" class="btn btn-warning btn-sm btn-block" id="resend_button" onclick="resendOTP('<?= $this->session->userdata(SESI . 'email'); ?>');" disabled>
-								Didn't receive OTP Code ?<br />
-								Try send again<br />
-								(After <span id="time">03:00</span>)
+								Tidak menerima kode OTP ?<br />
+								Coba kirimkan kembali kode OTP<br />
+								(Setelah <span id="time">01:00</span>)
 							</button>
-							<button type="submit" class="btn btn-primary btn-block" id="submit_btn">Verify</button>
+							<button type="submit" class="btn btn-primary btn-block mt-3" id="submit_btn">Verifikasi</button>
 						</div>
 					</div>
 				</form>
@@ -62,6 +63,21 @@
 </html>
 
 <script>
+	$.fn.inputFilter = function(inputFilter) {
+		return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+			if (inputFilter(this.value)) {
+				this.oldValue = this.value;
+				this.oldSelectionStart = this.selectionStart;
+				this.oldSelectionEnd = this.selectionEnd;
+			} else if (this.hasOwnProperty("oldValue")) {
+				this.value = this.oldValue;
+				this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+			} else {
+				this.value = "";
+			}
+		});
+	};
+
 	let toastrOptions = {
 			"closeButton": false,
 			"debug": false,
@@ -72,44 +88,28 @@
 			"onclick": null,
 			"showDuration": 300,
 			"hideDuration": 1000,
-			"timeOut": 3000,
+			"timeOut": 2000,
 			"extendedTimeOut": 0,
 			"showEasing": "swing",
 			"hideEasing": "linear",
 			"showMethod": "fadeIn",
 			"hideMethod": "fadeOut"
 		},
-		minutes = 10 * 1,
+		minutes = <?= TIMER_OTP; ?>,
 		display = $('#time');
 
 	$(document).ready(function() {
 		startTimer(minutes, display);
+
+		$("#otp").inputFilter(function(value) {
+			return /^\d*$/.test(value); // Allow digits only, using a RegExp
+		});
 
 		$('#form_otp').on('submit', function(e) {
 			e.preventDefault();
 			checkOTP();
 		});
 	});
-
-	function startTimer(duration, display) {
-		var timer = duration,
-			minutes, seconds;
-
-		setInterval(function() {
-			minutes = parseInt(timer / 60, 10);
-			seconds = parseInt(timer % 60, 10);
-
-			minutes = minutes < 10 ? "0" + minutes : minutes;
-			seconds = seconds < 10 ? "0" + seconds : seconds;
-
-			display.text(minutes + ":" + seconds);
-
-			if (--timer < 0) {
-				timer = 0;
-				$("#resend_button").attr('disabled', false);
-			}
-		}, 1000);
-	}
 
 	function checkOTP() {
 		let email = $('#email').val(),
@@ -173,5 +173,25 @@
 		}).done(function(e) {
 			console.log(e);
 		});
+	}
+
+	function startTimer(duration, display) {
+		let timer = duration,
+			minutes, seconds;
+
+		setInterval(function() {
+			minutes = parseInt(timer / 60, 10);
+			seconds = parseInt(timer % 60, 10);
+
+			minutes = minutes < 10 ? "0" + minutes : minutes;
+			seconds = seconds < 10 ? "0" + seconds : seconds;
+
+			display.text(minutes + ":" + seconds);
+
+			if (--timer < 0) {
+				timer = 0;
+				$("#resend_button").attr('disabled', false);
+			}
+		}, 1000);
 	}
 </script>

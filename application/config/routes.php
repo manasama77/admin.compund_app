@@ -24,13 +24,18 @@ $route['check_current_password'] = 'ProfileController/check_current_password';
 $route['update_password']        = 'ProfileController/update_password';
 $route['reset_password']         = 'ProfileController/reset_password';
 
-$route['trade_manager'] = 'TradeManagerController/index';
+$route['trade_manager/index']						= 'TradeManagerController/index';
+$route['trade_manager/profit']						= 'ProfitTradeManagerController/index';
+$route['trade_manager/konfigurasi']					= 'KonfigurasiTradeManagerController/index';
+$route['trade_manager/konfigurasi/add']				= 'KonfigurasiTradeManagerController/add';
+$route['trade_manager/konfigurasi/detail_package']	= 'KonfigurasiTradeManagerController/detail_package';
+$route['trade_manager/konfigurasi/store']			= 'KonfigurasiTradeManagerController/store';
+$route['trade_manager/konfigurasi/destroy/(:any)']	= 'KonfigurasiTradeManagerController/destroy/$1';
 
-$route['crypto_asset'] = 'CryptoAssetController/index';
+$route['crypto_asset/index'] = 'CryptoAssetController/index';
 
 $route['withdraw'] = 'WithdrawController/index';
 
-$route['profit_trade_manager'] = 'ProfitTradeManagerController/index';
 
 $route['profit_crypto_asset'] = 'ProfitCryptoAssetController/index';
 
@@ -60,10 +65,9 @@ $route['member/tolak_kyc']                = 'MemberController/tolak_kyc';
 
 $route['log/recruitment'] = 'LogRecruitmentController/index';
 
-$route['konfigurasi_trade_manager']                = 'KonfigurasiTradeManagerController/index';
-$route['konfigurasi_trade_manager/add']            = 'KonfigurasiTradeManagerController/add';
-$route['konfigurasi_trade_manager/detail_package'] = 'KonfigurasiTradeManagerController/detail_package';
-$route['konfigurasi_trade_manager/store']          = 'KonfigurasiTradeManagerController/store';
+$route['convert/index'] = 'ConvertController/index';
+
+$route['transfer/index'] = 'TransferController/index';
 
 $route['konfigurasi_crypto_asset']                = 'KonfigurasiCryptoAssetController/index';
 $route['konfigurasi_crypto_asset/add']            = 'KonfigurasiCryptoAssetController/add';

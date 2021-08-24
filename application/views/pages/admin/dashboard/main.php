@@ -71,7 +71,7 @@
 			</div>
 			<div class="col-sm-12 col-md-3">
 				<div class="info-box">
-					<span class="info-box-icon bg-primary elevation-1">
+					<span class="info-box-icon bg-purple elevation-1">
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
@@ -545,7 +545,7 @@
 					</div>
 					<div class="card-footer text-center">
 						<?php if ($card['arr_member']['member_active'] > 10) : ?>
-							<a href="<?= site_url('member'); ?>" class="uppercase">Selengkapnya...</a>
+							<a href="<?= site_url('member_management'); ?>" class="uppercase">Selengkapnya...</a>
 						<?php endif; ?>
 					</div>
 				</div>

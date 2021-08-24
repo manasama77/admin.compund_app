@@ -4,9 +4,7 @@
 		<span class="brand-text font-weight-bold text-white"><?= APP_NAME; ?></span>
 	</a>
 
-	<!-- Sidebar -->
 	<div class="sidebar">
-		<!-- Sidebar user panel (optional) -->
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="image">
 				<img src="<?= base_url('public/plugin/adminlte/dist/img/avatar5.png'); ?>" class="img-circle elevation-2" alt="Admin Image">
@@ -24,7 +22,6 @@
 			</div>
 		</div>
 
-		<!-- Sidebar Menu -->
 		<nav class="mt-2">
 			<ul class="nav nav-pills nav-sidebar flex-column nav-flat nav-compact nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item">
@@ -35,13 +32,38 @@
 						</p>
 					</a>
 				</li>
-				<li class="nav-item">
-					<a href="<?= site_url('trade_manager'); ?>" class="nav-link">
+				<li class="nav-item <?= ($this->uri->segment(1) == "trade_manager") ? "menu-is-opening menu-open" : ""; ?>">
+					<a href="#" class="nav-link <?= ($this->uri->segment(1) == "trade_manager") ? "active" : ""; ?>">
 						<i class="nav-icon fas fa-coins"></i>
 						<p>
 							Trade Manager
+							<i class="fas fa-angle-left right"></i>
 						</p>
 					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?= site_url('trade_manager/index'); ?>" class="nav-link <?= ($this->uri->segment(1) == "trade_manager" && $this->uri->segment(2) == "index") ? "active" : ""; ?>">
+								<i class="fas fa-list nav-icon"></i>
+								<p>List</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('trade_manager/profit'); ?>" class="nav-link <?= ($this->uri->segment(1) == "trade_manager" && $this->uri->segment(2) == "profit") ? "active" : ""; ?>">
+								<i class="nav-icon fas fa-coins"></i>
+								<p>
+									Profit Trade Manager
+								</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('trade_manager/konfigurasi'); ?>" class="nav-link <?= ($this->uri->segment(1) == "trade_manager" && $this->uri->segment(2) == "konfigurasi") ? "active" : ""; ?>">
+								<i class="nav-icon fas fa-cog"></i>
+								<p>
+									Konfigurasi Trade Manager
+								</p>
+							</a>
+						</li>
+					</ul>
 				</li>
 				<li class="nav-item">
 					<a href="<?= site_url('crypto_asset'); ?>" class="nav-link">
@@ -56,14 +78,6 @@
 						<i class="nav-icon fas fa-wallet"></i>
 						<p>
 							Withdraw
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= site_url('profit_trade_manager'); ?>" class="nav-link">
-						<i class="nav-icon fas fa-coins"></i>
-						<p>
-							Profit Trade Manager
 						</p>
 					</a>
 				</li>
@@ -100,6 +114,22 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a href="<?= site_url('convert/index'); ?>" class="nav-link <?= ($this->uri->segment(1) == "convert" && $this->uri->segment(2) == "index") ? "active" : ""; ?>">
+						<i class="nav-icon fas fa-long-arrow-alt-right"></i>
+						<p>
+							Konversi
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="<?= site_url('transfer/index'); ?>" class="nav-link <?= ($this->uri->segment(1) == "transfer" && $this->uri->segment(2) == "index") ? "active" : ""; ?>">
+						<i class="nav-icon fas fa-paper-plane"></i>
+						<p>
+							Transfer
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a href="<?= site_url('member_management'); ?>" class="nav-link">
 						<i class="nav-icon fas fa-users"></i>
 						<p>
@@ -124,14 +154,6 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= site_url('konfigurasi_trade_manager'); ?>" class="nav-link">
-						<i class="nav-icon fas fa-cog"></i>
-						<p>
-							Konfigurasi Trade Manager
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
 					<a href="<?= site_url('konfigurasi_crypto_asset'); ?>" class="nav-link">
 						<i class="nav-icon fas fa-cog"></i>
 						<p>
@@ -149,7 +171,5 @@
 				</li>
 			</ul>
 		</nav>
-		<!-- /.sidebar-menu -->
 	</div>
-	<!-- /.sidebar -->
 </aside>

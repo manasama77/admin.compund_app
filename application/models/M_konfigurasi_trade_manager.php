@@ -95,7 +95,7 @@ class M_konfigurasi_trade_manager extends CI_Model
 				$id                        = $key->id;
 				$code                      = $key->code;
 				$name                      = $key->name;
-				$amount                    = $key->amount;
+				$amount                    = check_float($key->amount);
 				$profit_per_month_percent  = check_float($key->profit_per_month_percent);
 				$profit_per_month_value    = check_float($key->profit_per_month_value);
 				$profit_per_day_percentage = check_float($key->profit_per_day_percentage);
@@ -113,6 +113,12 @@ class M_konfigurasi_trade_manager extends CI_Model
 				$created_at                = $key->created_at;
 				$updated_at                = $key->updated_at;
 				$deleted_at                = $key->deleted_at;
+
+				if ($is_active == "yes") {
+					$is_active_badge = '<span class="badge badge-success">Aktif</span>';
+				} else {
+					$is_active_badge = '<span class="badge badge-danger">Tidak Aktif</span>';
+				}
 
 				$nested = compact([
 					'tanggal_aktif',
@@ -134,6 +140,7 @@ class M_konfigurasi_trade_manager extends CI_Model
 					'logo',
 					'sequence',
 					'is_active',
+					'is_active_badge',
 					'created_at',
 					'updated_at',
 					'deleted_at',

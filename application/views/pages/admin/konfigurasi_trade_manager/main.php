@@ -35,22 +35,21 @@
 								<thead>
 									<tr>
 										<th style="min-width: 100px;">Tanggal Aktif</th>
-										<th style="min-width: 100px;">Kode</th>
-										<th style="min-width: 100px;">Nama Paket</th>
-										<th style="min-width: 100px;">Nilai Investasi</th>
-										<th style="min-width: 100px;">Persentase Profit Per Bulan</th>
-										<th style="min-width: 100px;">Profit Per Bulan</th>
-										<th style="min-width: 100px;">Persentase Profit Per Hari</th>
-										<th style="min-width: 100px;">Profit Per Hari</th>
-										<th style="min-width: 100px;">Masa Aktif</th>
-										<th style="min-width: 100px;">Persentase Profit Member</th>
-										<th style="min-width: 100px;">Profit Member</th>
-										<th style="min-width: 100px;">Persentase Profit Upline</th>
-										<th style="min-width: 100px;">Profit Upline</th>
-										<th style="min-width: 100px;">Persentase Profit Perusahaan</th>
-										<th style="min-width: 100px;">Profit Perusahaan</th>
-										<th class="text-center" style="min-width: 100px;">Status</th>
-										<th class="text-center" style="min-width: 100px;">
+										<th style="min-width: 80px;">Nama Paket</th>
+										<th style="min-width: 90px;" class="text-right">Nilai Investasi</th>
+										<th style="min-width: 70px;" class="text-center">Masa Aktif</th>
+										<th style="min-width: 100px;" class="text-right">% Profit / Bulan</th>
+										<th style="min-width: 90px;" class="text-right">Profit / Bulan</th>
+										<th style="min-width: 90px;" class="text-right">% Profit / Hari</th>
+										<th style="min-width: 80px;" class="text-right">Profit / Hari</th>
+										<th style="min-width: 110px;" class="text-right">% Profit Member</th>
+										<th style="min-width: 90px;" class="text-right">Profit Member</th>
+										<th style="min-width: 100px;" class="text-right">% Profit Upline</th>
+										<th style="min-width: 80px;" class="text-right">Profit Upline</th>
+										<th style="min-width: 130px;" class="text-right">% Profit Perusahaan</th>
+										<th style="min-width: 120px;" class="text-right">Profit Perusahaan</th>
+										<th class="text-center" style="min-width: 80px;">Status</th>
+										<th class="text-center">
 											<i class="fas fa-cogs"></i>
 										</th>
 									</tr>
@@ -62,25 +61,20 @@
 									?>
 											<tr>
 												<td><?= $key['tanggal_aktif']; ?></td>
-												<td><?= $key['code']; ?></td>
 												<td><?= $key['name']; ?></td>
-												<td><?= $key['amount']; ?></td>
-												<td><?= $key['profit_per_month_percent']; ?></td>
-												<td><?= $key['profit_per_month_value']; ?></td>
-												<td><?= $key['profit_per_day_percentage']; ?></td>
-												<td><?= $key['profit_per_day_value']; ?></td>
-												<td><?= $key['contract_duration']; ?></td>
-												<td><?= $key['share_self_percentage']; ?></td>
-												<td><?= $key['share_self_value']; ?></td>
-												<td><?= $key['share_upline_percentage']; ?></td>
-												<td><?= $key['share_upline_value']; ?></td>
-												<td><?= $key['share_company_percentage']; ?></td>
-												<td><?= $key['share_company_value']; ?></td>
-												<td class="text-center">
-													<?php
-													echo ($key['is_active'] == "yes") ? "Aktif" : "Tidak Aktif";
-													?>
-												</td>
+												<td class="text-right"><?= $key['amount']; ?></td>
+												<td class="text-center"><?= $key['contract_duration']; ?></td>
+												<td class="text-right"><?= $key['profit_per_month_percent']; ?></td>
+												<td class="text-right"><?= $key['profit_per_month_value']; ?></td>
+												<td class="text-right"><?= $key['profit_per_day_percentage']; ?></td>
+												<td class="text-right"><?= $key['profit_per_day_value']; ?></td>
+												<td class="text-right"><?= $key['share_self_percentage']; ?></td>
+												<td class="text-right"><?= $key['share_self_value']; ?></td>
+												<td class="text-right"><?= $key['share_upline_percentage']; ?></td>
+												<td class="text-right"><?= $key['share_upline_value']; ?></td>
+												<td class="text-right"><?= $key['share_company_percentage']; ?></td>
+												<td class="text-right"><?= $key['share_company_value']; ?></td>
+												<td class="text-center"><?= $key['is_active_badge']; ?></td>
 												<td class="text-center">
 													<?php $disabled = ($key['is_active'] == "yes") ? "disabled" : ""; ?>
 													<a href="<?= site_url('trade_manager/konfigurasi/destroy/' . $key['id']); ?>" class="btn btn-danger btn-sm <?= $disabled; ?>">

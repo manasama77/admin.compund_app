@@ -33,7 +33,6 @@
 										<th style="min-width: 100px;">Invoice</th>
 										<th style="min-width: 100px;">Package</th>
 										<th class="text-right" style="min-width: 100px;">Profit</th>
-										<th style="min-width: 350px;">Description</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -43,11 +42,10 @@
 									?>
 											<tr>
 												<td class="text-center"><?= $key['created_at']; ?></td>
-												<td><?= $key['fullname']; ?><br /><small>(<?= $key['email']; ?>)</small></td>
+												<td><?= $key['fullname']; ?> <small>(<?= $key['user_id']; ?>)</small></td>
 												<td><?= $key['invoice']; ?></td>
 												<td><?= $key['package_name']; ?></td>
 												<td class="text-right"><?= $key['profit']; ?> <small>USDT</small></td>
-												<td><?= $key['description']; ?></td>
 											</tr>
 									<?php
 										endforeach;

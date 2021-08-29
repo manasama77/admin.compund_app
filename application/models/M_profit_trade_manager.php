@@ -17,6 +17,7 @@ class M_profit_trade_manager extends CI_Model
 		$arr = $this->db
 			->select([
 				'profit_trade_manager.created_at',
+				'member.user_id',
 				'member.fullname',
 				'member.email',
 				'profit_trade_manager.invoice',
@@ -34,6 +35,7 @@ class M_profit_trade_manager extends CI_Model
 			$return = [];
 			foreach ($arr->result() as $key) {
 				$created_at   = $key->created_at;
+				$user_id      = $key->user_id;
 				$fullname     = $key->fullname;
 				$email        = $key->email;
 				$invoice      = $key->invoice;
@@ -43,6 +45,7 @@ class M_profit_trade_manager extends CI_Model
 
 				$nested = [
 					'created_at'   => $created_at,
+					'user_id'      => $user_id,
 					'fullname'     => $fullname,
 					'email'        => $email,
 					'invoice'      => $invoice,

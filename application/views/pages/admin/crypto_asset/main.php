@@ -29,16 +29,16 @@
 								<thead>
 									<tr>
 										<th style="min-width: 100px;">Register Date</th>
-										<th style="min-width: 150px;">Member</th>
+										<th style="min-width: 170px;">Member</th>
 										<th style="min-width: 100px;">Invoice</th>
-										<th style="min-width: 100px;">Package</th>
-										<th class="text-right" style="min-width: 100px;">Investment</th>
-										<th style="min-width: 130px;">Profit Self/Day</th>
-										<th style="min-width: 130px;">Profit Upline/Day</th>
-										<th style="min-width: 130px;">Profit Company/Day</th>
-										<th style="min-width: 130px;">Profit Asset</th>
-										<th class="text-center" style="min-width: 100px;">Expired Date</th>
-										<th class="text-center" style="min-width: 100px;">Status</th>
+										<th style="min-width: 50px;">Package</th>
+										<th class="text-right" style="min-width: 70px;">Investment</th>
+										<th style="min-width: 120px;" class="text-right">Profit Member/Day</th>
+										<th style="min-width: 110px;" class="text-right">Profit Upline/Day</th>
+										<th style="min-width: 130px;" class="text-right">Profit Company/Day</th>
+										<th style="min-width: 80px;" class="text-right">Profit Asset</th>
+										<th class="text-center" style="min-width: 80px;">Expired Date</th>
+										<th class="text-center" style="min-width: 60px;">Status</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -48,16 +48,16 @@
 									?>
 											<tr>
 												<td class="text-center"><?= $key['created_at']; ?></td>
-												<td><?= $key['buyer_name']; ?><br /><small>(<?= $key['buyer_email']; ?>)</small></td>
+												<td><?= $key['buyer_name']; ?> <small>(<?= $key['buyer_email']; ?>)</small></td>
 												<td><?= $key['invoice']; ?></td>
 												<td><?= $key['package_name']; ?></td>
-												<td class="text-right"><?= $key['amount']; ?> <small>USDT</small></td>
-												<td class="text-right"><?= $key['profit_self_per_day']; ?> <small>USDT</small></td>
-												<td class="text-right"><?= $key['profit_upline_per_day']; ?> <small>USDT</small></td>
-												<td class="text-right"><?= $key['profit_company_per_day']; ?> <small>USDT</small></td>
-												<td class="text-right"><?= $key['amount_profit']; ?> <small>USDT</small></td>
+												<td class="text-right"><?= $key['amount']; ?></td>
+												<td class="text-right"><?= $key['profit_self_per_day']; ?></td>
+												<td class="text-right"><?= $key['profit_upline_per_day']; ?></td>
+												<td class="text-right"><?= $key['profit_company_per_day']; ?></td>
+												<td class="text-right"><?= $key['amount_profit']; ?></td>
 												<td class="text-center"><?= $key['expired_at']; ?></td>
-												<td class="text-center"><?= ucwords($key['state']); ?></td>
+												<td class="text-center"><?= $key['state_badge']; ?></td>
 											</tr>
 									<?php
 										endforeach;

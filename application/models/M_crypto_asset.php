@@ -79,6 +79,20 @@ class M_crypto_asset extends CI_Model
 				$expired_at             = $key->expired_package;
 				$state                  = $key->state;
 
+				if ($state == "waiting payment") {
+					$state_badge = '<badge class="badge badge-info">Menunggu Pembayaran</badge>';
+				} elseif ($state == "pending") {
+					$state_badge = '<badge class="badge badge-secondary">Verifikasi Pembayaran</badge>';
+				} elseif ($state == "active") {
+					$state_badge = '<badge class="badge badge-success">Aktif</badge>';
+				} elseif ($state == "inactive") {
+					$state_badge = '<badge class="badge badge-dark">Tidak Aktif</badge>';
+				} elseif ($state == "cancel") {
+					$state_badge = '<badge class="badge badge-warning">Cancel</badge>';
+				} else {
+					$state_badge = '<badge class="badge badge-danger">Kedaluwarsa</badge>';
+				}
+
 				$nested = [
 					'created_at'             => $created_at,
 					'buyer_name'             => $buyer_name,
@@ -92,6 +106,7 @@ class M_crypto_asset extends CI_Model
 					'amount_profit'          => $amount_profit,
 					'expired_at'             => $expired_at,
 					'state'                  => $state,
+					'state_badge'            => $state_badge,
 				];
 				array_push($return, $nested);
 			}

@@ -29,7 +29,7 @@
 								<thead>
 									<tr>
 										<th style="min-width: 100px;">Register Date</th>
-										<th style="min-width: 100px;">Member</th>
+										<th style="min-width: 150px;">Member</th>
 										<th style="min-width: 100px;">Invoice</th>
 										<th style="min-width: 100px;">Package</th>
 										<th class="text-right" style="min-width: 100px;">Investment</th>

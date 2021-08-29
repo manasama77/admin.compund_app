@@ -17,8 +17,8 @@ class ProfileController extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'title'   => APP_NAME . ' | Profile',
-			'content' => 'profile/main',
+			'title'      => APP_NAME . ' | Profile',
+			'content'    => 'profile/main',
 			'vitamin_js' => 'profile/main_js',
 		];
 

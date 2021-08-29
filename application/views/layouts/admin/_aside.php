@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-warning elevation-1">
 	<a href="<?= site_url('dashboard'); ?>" class="brand-link">
 		<img src="https://cryptoperty.id/public/img/logo.png" alt="LOGO" class="img-fluid brand-image" style="opacity: .8; max-width: 60px;">
 		<span class="brand-text font-weight-bold text-white"><?= APP_NAME; ?></span>
@@ -99,35 +99,46 @@
 						</li>
 					</ul>
 				</li>
+
+				<li class="nav-item <?= ($this->uri->segment(1) == "bonus") ? "menu-is-opening menu-open" : ""; ?>">
+					<a href="#" class="nav-link <?= ($this->uri->segment(1) == "bonus") ? "active" : ""; ?>">
+						<i class="nav-icon fas fa-coins"></i>
+						<p>
+							Bonus
+							<i class="fas fa-angle-left right"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?= site_url('bonus/recruitment'); ?>" class="nav-link <?= ($this->uri->segment(1) == "bonus" && $this->uri->segment(2) == "recruitment") ? "active" : ""; ?>">
+								<i class="fas fa-users nav-icon"></i>
+								<p>Recruitment</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('bonus/qualification_leader'); ?>" class="nav-link <?= ($this->uri->segment(1) == "bonus" && $this->uri->segment(2) == "qualification_leader") ? "active" : ""; ?>">
+								<i class="nav-icon fas fa-users"></i>
+								<p>
+									Qualification Leader
+								</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('bonus/royalty'); ?>" class="nav-link <?= ($this->uri->segment(1) == "bonus" && $this->uri->segment(2) == "royalty") ? "active" : ""; ?>">
+								<i class="nav-icon fas fa-users"></i>
+								<p>
+									Royalty
+								</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+
 				<li class="nav-item">
-					<a href="<?= site_url('withdraw'); ?>" class="nav-link">
+					<a href="<?= site_url('withdraw'); ?>" class="nav-link <?= ($this->uri->segment(1) == "withdraw") ? "active" : ""; ?>">
 						<i class="nav-icon fas fa-wallet"></i>
 						<p>
 							Withdraw
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= site_url('bonus_recruitment'); ?>" class="nav-link">
-						<i class="nav-icon fas fa-coins"></i>
-						<p>
-							Bonus Recruitment
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= site_url('bonus_qualification_leader'); ?>" class="nav-link">
-						<i class="nav-icon fas fa-coins"></i>
-						<p>
-							Bonus Qualification Leader
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= site_url('bonus_royalty'); ?>" class="nav-link">
-						<i class="nav-icon fas fa-coins"></i>
-						<p>
-							Bonus Royalty
 						</p>
 					</a>
 				</li>
@@ -148,7 +159,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= site_url('member_management'); ?>" class="nav-link">
+					<a href="<?= site_url('member_management'); ?>" class="nav-link <?= ($this->uri->segment(1) == "member_management") ? "active" : ""; ?>">
 						<i class="nav-icon fas fa-users"></i>
 						<p>
 							Member
@@ -156,7 +167,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= site_url('founder'); ?>" class="nav-link">
+					<a href="<?= site_url('founder'); ?>" class="nav-link <?= ($this->uri->segment(1) == "founder") ? "active" : ""; ?>">
 						<i class="nav-icon fas fa-user-tie"></i>
 						<p>
 							Founder
@@ -164,7 +175,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= site_url('admin_management'); ?>" class="nav-link">
+					<a href="<?= site_url('admin_management'); ?>" class="nav-link <?= ($this->uri->segment(1) == "admin_management") ? "active" : ""; ?>">
 						<i class="nav-icon fas fa-user-secret"></i>
 						<p>
 							Admin Management
@@ -172,7 +183,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= site_url('konfigurasi/aplikasi'); ?>" class="nav-link">
+					<a href="<?= site_url('konfigurasi/aplikasi'); ?>" class="nav-link <?= ($this->uri->segment(1) == "konfigurasi") ? "active" : ""; ?>">
 						<i class="nav-icon fas fa-cog"></i>
 						<p>
 							Konfigurasi Aplikasi

@@ -21,7 +21,7 @@ class WithdrawController extends CI_Controller
 	{
 		$arr = $this->M_withdraw->get_list();
 		$data = [
-			'title'      => APP_NAME . ' | Crypto Asset',
+			'title'      => APP_NAME . ' | Withdraw',
 			'content'    => 'withdraw/main',
 			'vitamin_js' => 'withdraw/main_js',
 			'arr'        => $arr,

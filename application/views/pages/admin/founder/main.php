@@ -28,6 +28,46 @@
 	<div class="container-fluid">
 		<div class="row">
 
+			<div class="col-sm-12 col-md-4">
+				<div class="card">
+					<div class="card-header">
+						Tambah Founder
+					</div>
+					<div class="card-body">
+						<form id="form_add">
+							<div class="form-group">
+								<label for="fullname">Nama Lengkap</label>
+								<input type="text" class="form-control" id="fullname" name="fullname" autocomplete="name" minlength="3" required>
+							</div>
+							<div class="form-group">
+								<label for="phone_number">No Telepon</label>
+								<input type="tel" class="form-control" id="phone_number" name="phone_number" autocomplete="tel" minlength="4" required>
+							</div>
+
+							<hr>
+
+							<div class="form-group">
+								<label for="user_id">User ID</label>
+								<input type="text" class="form-control" id="user_id" name="user_id" minlength="8" maxlength="8" required>
+							</div>
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" class="form-control" id="email" name="email" autocomplete="email" minlength="5" maxlength="100" required>
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" class="form-control" id="password" name="password" autocomplete="new-password" minlength="4" maxlength="16" required>
+							</div>
+							<div class="form-group">
+								<label for="verify_password">Verify Password</label>
+								<input type="password" class="form-control" id="verify_password" name="verify_password" autocomplete="new-password" minlength="4" maxlength="16" required>
+							</div>
+							<button type="submit" class="btn btn-primary btn-block">Tambah Founder</button>
+						</form>
+					</div>
+				</div>
+			</div>
+
 			<div class="col-sm-12 col-md-8">
 				<div class="card">
 					<div class="card-header">
@@ -38,22 +78,22 @@
 							<table class="table table-bordered table-striped" id="table_data">
 								<thead>
 									<tr>
-										<th class="text-center" style="min-width: 100px;">Tanggal Registrasi</th>
-										<th>KYC</th>
-										<th>User ID</th>
-										<th>Nama Lengkap</th>
-										<th>Email</th>
-										<th>No Telepon</th>
-										<th class="text-right">Total Asset</th>
-										<th class="text-right">Jumlah Trade Manager</th>
-										<th class="text-right">Total Trade Manager</th>
-										<th class="text-right">Jumlah Crypto Asset</th>
-										<th class="text-right">Total Crypto Asset</th>
-										<th class="text-right">Profit Paid</th>
-										<th class="text-right">Profit Unpaid</th>
+										<th class="text-center" style="min-width: 120px;">Tanggal Registrasi</th>
+										<th class="text-center">KYC</th>
+										<th style="min-width: 50px;">User ID</th>
+										<th style="min-width: 150px;">Nama Lengkap</th>
+										<th style="min-width: 150px;">Email</th>
+										<th style="min-width: 100px;">No Telepon</th>
+										<th class="text-right" style="min-width: 70px;">Total Asset</th>
+										<th class="text-right" style="min-width: 70px;">Jumlah TM</th>
+										<th class="text-right" style="min-width: 60px;">Total TM</th>
+										<th class="text-right" style="min-width: 70px;">Jumlah CA</th>
+										<th class="text-right" style="min-width: 60px;">Total CA</th>
+										<th class="text-right" style="min-width: 70px;">Profit Paid</th>
+										<th class="text-right" style="min-width: 90px;">Profit Unpaid</th>
 										<th class="text-right">Bonus</th>
 										<th class="text-right">Ratu</th>
-										<th class="text-center">Total Downline</th>
+										<th class="text-center">Downline</th>
 										<th class="text-center">Status</th>
 									</tr>
 								</thead>
@@ -135,46 +175,6 @@
 								</tbody>
 							</table>
 						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-sm-12 col-md-4">
-				<div class="card">
-					<div class="card-header">
-						Tambah Founder
-					</div>
-					<div class="card-body">
-						<form id="form_add">
-							<div class="form-group">
-								<label for="fullname">Nama Lengkap</label>
-								<input type="text" class="form-control" id="fullname" name="fullname" autocomplete="name" minlength="3" required>
-							</div>
-							<div class="form-group">
-								<label for="phone_number">No Telepon</label>
-								<input type="tel" class="form-control" id="phone_number" name="phone_number" autocomplete="tel" minlength="4" required>
-							</div>
-
-							<hr>
-
-							<div class="form-group">
-								<label for="user_id">User ID</label>
-								<input type="text" class="form-control" id="user_id" name="user_id" minlength="8" maxlength="8" required>
-							</div>
-							<div class="form-group">
-								<label for="email">Email</label>
-								<input type="email" class="form-control" id="email" name="email" autocomplete="email" minlength="5" maxlength="100" required>
-							</div>
-							<div class="form-group">
-								<label for="password">Password</label>
-								<input type="password" class="form-control" id="password" name="password" autocomplete="new-password" minlength="4" maxlength="16" required>
-							</div>
-							<div class="form-group">
-								<label for="verify_password">Verify Password</label>
-								<input type="password" class="form-control" id="verify_password" name="verify_password" autocomplete="new-password" minlength="4" maxlength="16" required>
-							</div>
-							<button type="submit" class="btn btn-primary btn-block">Tambah Founder</button>
-						</form>
 					</div>
 				</div>
 			</div>

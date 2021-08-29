@@ -19,9 +19,9 @@ class M_bonus_recruitment extends CI_Model
 			->select([
 				'bonus_recruitment.created_at',
 				'member.fullname as fullname_member',
-				'member.email as email_member',
+				'member.user_id as user_id_member',
 				'downline.fullname as fullname_downline',
-				'downline.email as email_downline',
+				'downline.user_id as user_id_downline',
 				'bonus_recruitment.type_package',
 				'bonus_recruitment.invoice',
 				'bonus_recruitment.package_name',
@@ -41,9 +41,9 @@ class M_bonus_recruitment extends CI_Model
 			foreach ($arr->result() as $key) {
 				$created_at        = $key->created_at;
 				$fullname_member   = $key->fullname_member;
-				$email_member      = $key->email_member;
+				$user_id_member    = $key->user_id_member;
 				$fullname_downline = $key->fullname_downline;
-				$email_downline    = $key->email_downline;
+				$user_id_downline  = $key->user_id_downline;
 				$type_package      = $key->type_package;
 				$invoice           = $key->invoice;
 				$package_name      = $key->package_name;
@@ -54,9 +54,9 @@ class M_bonus_recruitment extends CI_Model
 				$nested = [
 					'created_at'        => $created_at,
 					'fullname_member'   => $fullname_member,
-					'email_member'      => $email_member,
+					'user_id_member'    => $user_id_member,
 					'fullname_downline' => $fullname_downline,
-					'email_downline'    => $email_downline,
+					'user_id_downline'  => $user_id_downline,
 					'type_package'      => $type_package,
 					'invoice'           => $invoice,
 					'package_name'      => $package_name,

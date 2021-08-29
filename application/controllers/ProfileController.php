@@ -14,11 +14,10 @@ class ProfileController extends CI_Controller
 		$this->current_datetime = date('Y-m-d H: i: s');
 	}
 
-
 	public function index()
 	{
 		$data = [
-			'title'   => 'Edit Trade | Profile',
+			'title'   => APP_NAME . ' | Profile',
 			'content' => 'profile/main',
 			'vitamin_js' => 'profile/main_js',
 		];

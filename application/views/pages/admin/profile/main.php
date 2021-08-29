@@ -16,7 +16,6 @@
 
 <section class="content">
 	<div class="container-fluid">
-		<?php print_r($arr->result()); ?>
 		<div class="row">
 			<div class="col-md-3">
 

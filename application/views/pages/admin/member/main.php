@@ -28,23 +28,23 @@
 							<table class="table table-bordered table-striped" id="table_data">
 								<thead>
 									<tr>
-										<th class="text-center" style="min-width: 100px;">Tanggal Registrasi</th>
-										<th>KYC</th>
+										<th class="text-center" style="min-width: 120px;">Tanggal Registrasi</th>
+										<th class="text-center">KYC</th>
 										<th>User ID</th>
-										<th>Nama Lengkap</th>
-										<th>Email</th>
-										<th>No Telepon</th>
-										<th>Upline</th>
-										<th class="text-right">Total Asset</th>
-										<th class="text-right">Jumlah Trade Manager</th>
-										<th class="text-right">Total Trade Manager</th>
-										<th class="text-right">Jumlah Crypto Asset</th>
-										<th class="text-right">Total Crypto Asset</th>
-										<th class="text-right">Profit Paid</th>
-										<th class="text-right">Profit Unaid</th>
-										<th class="text-right">Bonus</th>
-										<th class="text-right">Ratu</th>
-										<th class="text-center">Total Downline</th>
+										<th style="min-width: 150px;">Nama Lengkap</th>
+										<th style="min-width: 150px;">Email</th>
+										<th style="min-width: 80px;">No Telepon</th>
+										<th style="min-width: 50px;">Upline</th>
+										<th class="text-right" style="min-width: 70px;">Total Asset</th>
+										<th class="text-right" style="min-width: 70px;">Jumlah TM</th>
+										<th class="text-right" style="min-width: 60px;">Total TM</th>
+										<th class="text-right" style="min-width: 70px;">Jumlah CA</th>
+										<th class="text-right" style="min-width: 60px;">Total CA</th>
+										<th class="text-right" style="min-width: 70px;">Profit Paid</th>
+										<th class="text-right" style="min-width: 80px;">Profit Unaid</th>
+										<th class="text-right" style="min-width: 50px;">Bonus</th>
+										<th class="text-right" style="min-width: 60px;">Ratu</th>
+										<th class="text-center" style="min-width: 60px;">Downline</th>
 										<th class="text-center">Status</th>
 									</tr>
 								</thead>

@@ -271,7 +271,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">Total Penarikan Profit <small>USDT</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_withdraw']['sum_wd_profit_usdt']; ?> <small>USDT</small>
+							<?= check_float($card['arr_withdraw']['sum_wd_profit_usdt']); ?> <small>USDT</small>
 						</span>
 					</div>
 				</div>
@@ -285,7 +285,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">Total Penarikan Profit <small>BNB</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_withdraw']['sum_wd_profit_bnb']; ?> <small>BNB</small>
+							<?= check_float($card['arr_withdraw']['sum_wd_profit_bnb']); ?> <small>BNB</small>
 						</span>
 					</div>
 				</div>
@@ -299,7 +299,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">Total Penarikan Profit <small>TRX</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_withdraw']['sum_wd_profit_trx']; ?> <small>TRX</small>
+							<?= check_float($card['arr_withdraw']['sum_wd_profit_trx']); ?> <small>TRX</small>
 						</span>
 					</div>
 				</div>
@@ -313,7 +313,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">Total Penarikan Profit <small>LTCT</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_withdraw']['sum_wd_profit_ltct']; ?> <small>LTCT</small>
+							<?= check_float($card['arr_withdraw']['sum_wd_profit_ltct']); ?> <small>LTCT</small>
 						</span>
 					</div>
 				</div>
@@ -330,7 +330,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">Total Penarikan Bonus <small>USDT</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_withdraw']['sum_wd_bonus_usdt']; ?> <small>USDT</small>
+							<?= check_float($card['arr_withdraw']['sum_wd_bonus_usdt']); ?> <small>USDT</small>
 						</span>
 					</div>
 				</div>
@@ -344,7 +344,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">Total Penarikan Bonus <small>BNB</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_withdraw']['sum_wd_bonus_bnb']; ?> <small>BNB</small>
+							<?= check_float($card['arr_withdraw']['sum_wd_bonus_bnb']); ?> <small>BNB</small>
 						</span>
 					</div>
 				</div>
@@ -358,7 +358,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">Total Penarikan Bonus <small>TRX</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_withdraw']['sum_wd_bonus_trx']; ?> <small>TRX</small>
+							<?= check_float($card['arr_withdraw']['sum_wd_bonus_trx']); ?> <small>TRX</small>
 						</span>
 					</div>
 				</div>
@@ -372,7 +372,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">Total Penarikan Bonus <small>LTCT</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_withdraw']['sum_wd_bonus_ltct']; ?> <small>LTCT</small>
+							<?= check_float($card['arr_withdraw']['sum_wd_bonus_ltct']); ?> <small>LTCT</small>
 						</span>
 					</div>
 				</div>
@@ -389,7 +389,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">CoinPayments <small>USDT</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_coin_balance']['usdt']; ?> <small>USDT</small>
+							<?= check_float($card['arr_coin_balance']['usdt']); ?> <small>USDT</small>
 						</span>
 					</div>
 				</div>
@@ -403,7 +403,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">CoinPayments <small>BNB</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_coin_balance']['bnb']; ?> <small>BNB</small>
+							<?= check_float($card['arr_coin_balance']['bnb']); ?> <small>BNB</small>
 						</span>
 					</div>
 				</div>
@@ -417,7 +417,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">CoinPayments <small>TRX</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_coin_balance']['trx']; ?> <small>TRX</small>
+							<?= check_float($card['arr_coin_balance']['trx']); ?> <small>TRX</small>
 						</span>
 					</div>
 				</div>
@@ -431,7 +431,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">CoinPayments <small>LTCT</small></span>
 						<span class="info-box-number">
-							<?= $card['arr_coin_balance']['ltct']; ?> <small>LTCT</small>
+							<?= check_float($card['arr_coin_balance']['ltct']); ?> <small>LTCT</small>
 						</span>
 					</div>
 				</div>
@@ -445,7 +445,7 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Member Terbaru</h3>
+						<h4 class="card-title"><strong>Member Terbaru</strong></h4>
 
 						<div class="card-tools">
 							<button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -454,21 +454,18 @@
 						</div>
 					</div>
 					<div class="card-body p-0">
-						<div class="table-responsive">
+						<div class="table-responsive table-bordered table-striped">
 							<table class="table">
 								<thead>
 									<tr>
-										<th class="text-center align-middle">PP</th>
 										<th class="align-middle">User ID</th>
-										<th class="align-middle">Nama Lengkap</th>
-										<th class="align-middle">Email</th>
-										<th class="align-middle">No Telepon</th>
-										<th class="align-middle">Upline User ID</th>
-										<th class="align-middle">Upline Nama Lengkap</th>
-										<th class="align-middle">Upline Email</th>
-										<th class="text-right align-middle">Total Asset</th>
-										<th class="text-right align-middle">Total Downline</th>
-										<th class="text-center align-middle">
+										<th class="align-middle" style="min-width: 150px;">Nama Lengkap</th>
+										<th class="align-middle" style="min-width: 150px;">Email</th>
+										<th class="align-middle" style="min-width: 100px;">No Telepon</th>
+										<th class="align-middle" style="min-width: 200px;">Upline</th>
+										<th class="text-right align-middle" style="min-width: 100px;">Total Asset</th>
+										<th class="text-center align-middle" style="min-width: 80px;">Downline</th>
+										<th class="text-center align-middle" style="min-width: 110px;">
 											<i class="fas fa-cog"></i>
 										</th>
 									</tr>
@@ -482,9 +479,6 @@
 
 											<tr>
 												<td class="align-top">
-													<img src="<?= $key['profile_picture']; ?>" alt="Profile Picture" class="img-size-50">
-												</td>
-												<td class="align-top">
 													<?= $key['user_id']; ?>
 												</td>
 												<td class="align-top">
@@ -497,9 +491,6 @@
 													<?= $key['phone_number']; ?>
 												</td>
 												<td class="align-top">
-													<?= $key['upline_user_id']; ?>
-												</td>
-												<td class="align-top">
 													<?php if ($key['upline_fullname'] == null) { ?>
 														<span class="badge badge-info">
 															FOUNDER
@@ -509,16 +500,14 @@
 														echo $key['upline_fullname'];
 													}
 													?>
-												</td>
-												<td class="align-top">
-													<?= $key['upline_email']; ?>
+													(<?= $key['upline_user_id']; ?>)
 												</td>
 												<td class="text-right align-middle">
 													<span class="badge badge-success">
 														<i class="fas fa-coin"></i> <?= $key['total_omset_formated']; ?>
 													</span>
 												</td>
-												<td class="text-right align-middle">
+												<td class="text-center align-middle">
 													<span class="badge badge-warning">
 														<i class="fas fa-users"></i> <?= $key['total_downline_formated']; ?>
 													</span>

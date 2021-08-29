@@ -26,7 +26,6 @@ class MemberController extends CI_Controller
 		$this->Nested_set->setPrimaryKeyColumn('id_member');
 	}
 
-
 	public function index()
 	{
 		$arr_member = $this->_get_member();

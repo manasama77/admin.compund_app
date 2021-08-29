@@ -29,14 +29,13 @@
 								<thead>
 									<tr>
 										<th style="min-width: 100px;">Date</th>
-										<th style="min-width: 100px;">Member</th>
-										<th style="min-width: 100px;">Downline</th>
-										<th style="min-width: 100px;">Type Package</th>
-										<th style="min-width: 100px;">Invoice</th>
-										<th style="min-width: 100px;">Package Name</th>
-										<th class="text-right" style="min-width: 100px;">Package Amount</th>
-										<th class="text-right" style="min-width: 100px;">Bonus</th>
-										<th style="min-width: 350px;">Description</th>
+										<th style="min-width: 150px;">Member</th>
+										<th style="min-width: 150px;">Downline</th>
+										<th style="min-width: 90px;">Type Package</th>
+										<th style="min-width: 90px;">Package Name</th>
+										<th style="min-width: 90px;">Invoice</th>
+										<th class="text-right" style="min-width: 110px;">Package Amount</th>
+										<th class="text-right" style="min-width: 70px;">Bonus</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -46,14 +45,13 @@
 									?>
 											<tr>
 												<td class="text-center"><?= $key['created_at']; ?></td>
-												<td><?= $key['fullname_member']; ?><br /><small>(<?= $key['email_member']; ?>)</small></td>
-												<td><?= $key['fullname_downline']; ?><br /><small>(<?= $key['email_downline']; ?>)</small></td>
+												<td><?= $key['fullname_member']; ?> <small>(<?= $key['user_id_member']; ?>)</small></td>
+												<td><?= $key['fullname_downline']; ?> <small>(<?= $key['user_id_downline']; ?>)</small></td>
 												<td><?= ucwords($key['type_package']); ?></td>
-												<td><?= $key['invoice']; ?></td>
 												<td><?= $key['package_name']; ?></td>
-												<td class="text-right"><?= $key['package_amount']; ?> <small>USDT</small></td>
-												<td class="text-right"><?= $key['bonus']; ?> <small>USDT</small></td>
-												<td><?= $key['description']; ?></td>
+												<td><?= $key['invoice']; ?></td>
+												<td class="text-right"><?= $key['package_amount']; ?></td>
+												<td class="text-right"><?= $key['bonus']; ?></td>
 											</tr>
 									<?php
 										endforeach;

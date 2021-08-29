@@ -55,7 +55,13 @@
 												<td class="text-right"><?= $key['profit_self_per_day']; ?></td>
 												<td class="text-right"><?= $key['profit_upline_per_day']; ?></td>
 												<td class="text-right"><?= $key['profit_company_per_day']; ?></td>
-												<td class="text-center"><?= $key['expired_at']; ?></td>
+												<td class="text-center">
+													<?php
+													if (in_array($key['state'], ['active', 'inactive', 'expired'])) {
+														echo $key['expired_at'];
+													}
+													?>
+												</td>
 												<td class="text-center"><?= $key['extend_mode_badge']; ?></td>
 												<td class="text-center"><?= $key['state_badge']; ?></td>
 											</tr>

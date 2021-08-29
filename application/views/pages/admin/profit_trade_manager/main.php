@@ -28,11 +28,11 @@
 							<table class="table table-bordered table-striped" id="table_data">
 								<thead>
 									<tr>
-										<th style="min-width: 100px;">Date</th>
-										<th style="min-width: 100px;">Member</th>
-										<th style="min-width: 100px;">Invoice</th>
-										<th style="min-width: 100px;">Package</th>
-										<th class="text-right" style="min-width: 100px;">Profit</th>
+										<th>Date</th>
+										<th>Member</th>
+										<th>Invoice</th>
+										<th>Package</th>
+										<th class="text-right">Profit</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -45,7 +45,7 @@
 												<td><?= $key['fullname']; ?> <small>(<?= $key['user_id']; ?>)</small></td>
 												<td><?= $key['invoice']; ?></td>
 												<td><?= $key['package_name']; ?></td>
-												<td class="text-right"><?= $key['profit']; ?> <small>USDT</small></td>
+												<td class="text-right"><?= $key['profit']; ?></td>
 											</tr>
 									<?php
 										endforeach;

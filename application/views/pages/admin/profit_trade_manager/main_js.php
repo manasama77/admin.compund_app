@@ -2,7 +2,7 @@
 	$(document).ready(function() {
 		$("#table_data").DataTable({
 			"scrollX": "300px",
-			"scrollY": "600px",
+			"scrollY": "500px",
 			order: [
 				[0, 'desc']
 			],

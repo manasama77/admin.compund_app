@@ -32,12 +32,17 @@ $route['trade_manager/konfigurasi/detail_package']	= 'KonfigurasiTradeManagerCon
 $route['trade_manager/konfigurasi/store']			= 'KonfigurasiTradeManagerController/store';
 $route['trade_manager/konfigurasi/destroy/(:any)']	= 'KonfigurasiTradeManagerController/destroy/$1';
 
-$route['crypto_asset/index'] = 'CryptoAssetController/index';
+$route['crypto_asset/index']                      	= 'CryptoAssetController/index';
+$route['crypto_asset/profit']                     	= 'ProfitCryptoAssetController/index';
+$route['crypto_asset/konfigurasi']                	= 'KonfigurasiCryptoAssetController/index';
+$route['crypto_asset/konfigurasi/add']            	= 'KonfigurasiCryptoAssetController/add';
+$route['crypto_asset/konfigurasi/detail_package'] 	= 'KonfigurasiCryptoAssetController/detail_package';
+$route['crypto_asset/konfigurasi/store']          	= 'KonfigurasiCryptoAssetController/store';
+$route['crypto_asset/konfigurasi/destryoy/(:any)'] 	= 'KonfigurasiCryptoAssetController/destroy/$1';
 
 $route['withdraw'] = 'WithdrawController/index';
 
 
-$route['profit_crypto_asset'] = 'ProfitCryptoAssetController/index';
 
 $route['bonus_recruitment'] = 'BonusRecruitmentController/index';
 
@@ -68,11 +73,6 @@ $route['log/recruitment'] = 'LogRecruitmentController/index';
 $route['convert/index'] = 'ConvertController/index';
 
 $route['transfer/index'] = 'TransferController/index';
-
-$route['konfigurasi_crypto_asset']                = 'KonfigurasiCryptoAssetController/index';
-$route['konfigurasi_crypto_asset/add']            = 'KonfigurasiCryptoAssetController/add';
-$route['konfigurasi_crypto_asset/detail_package'] = 'KonfigurasiCryptoAssetController/detail_package';
-$route['konfigurasi_crypto_asset/store']          = 'KonfigurasiCryptoAssetController/store';
 
 $route['konfigurasi/aplikasi']        = 'KonfigurasiAplikasi/index';
 $route['konfigurasi/aplikasi/update'] = 'KonfigurasiAplikasi/update';

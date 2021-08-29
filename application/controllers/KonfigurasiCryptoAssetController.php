@@ -118,6 +118,22 @@ class KonfigurasiCryptoAssetController extends CI_Controller
 
 		echo json_encode($return);
 	}
+
+	public function destroy($id = null)
+	{
+		if ($id == null) {
+			return show_404();
+		}
+
+		$data = ['deleted_at' => $this->datetime];
+		$where = [
+			'id' => $id,
+			'is_active' => 'no',
+		];
+		$this->M_core->update('konfigurasi_crypto_asset', $data, $where);
+
+		redirect('crypto_asset/konfigurasi');
+	}
 }
         
 /* End of file  KonfigurasiCryptoAssetController.php */

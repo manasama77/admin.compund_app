@@ -6,7 +6,7 @@
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
-					<li class="breadcrumb-item"><a href="<?= site_url('konfigurasi_crypto_asset'); ?>">Konfigurasi Crypto Asset</a></li>
+					<li class="breadcrumb-item"><a href="<?= site_url('crypto_asset/konfigurasi'); ?>">Konfigurasi Crypto Asset</a></li>
 					<li class="breadcrumb-item active">Tambah Konfigurasi Crypto Asset</li>
 				</ol>
 			</div>
@@ -208,7 +208,7 @@
 
 				<div class="col-12">
 					<button type="submit" class="btn btn-primary btn-block">Submit</button>
-					<a href="<?= site_url('konfigurasi_crypto_asset'); ?>" class="btn btn-secondary btn-block">Back to List</a>
+					<a href="<?= site_url('crypto_asset/konfigurasi'); ?>" class="btn btn-secondary btn-block">Back to List</a>
 				</div>
 
 			</div>

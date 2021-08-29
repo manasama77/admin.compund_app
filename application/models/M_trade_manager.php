@@ -22,7 +22,7 @@ class M_trade_manager extends CI_Model
 				'member_trade_manager.payment_method',
 				'member_trade_manager.id_member',
 				'member_trade_manager.member_fullname',
-				'member_trade_manager.member_email',
+				'member_trade_manager.member_user_id',
 				'member_trade_manager.id_package',
 				'member_trade_manager.id_konfigurasi',
 				'member_trade_manager.package_code',
@@ -67,7 +67,7 @@ class M_trade_manager extends CI_Model
 			foreach ($arr->result() as $key) {
 				$created_at             = $key->created_at;
 				$buyer_name             = $key->member_fullname;
-				$buyer_email            = $key->member_email;
+				$buyer_user_id          = $key->member_user_id;
 				$invoice                = $key->invoice;
 				$package_name           = $key->package_name;
 				$amount                 = check_float($key->amount_1);
@@ -78,10 +78,22 @@ class M_trade_manager extends CI_Model
 				$extend_mode            = $key->is_extend;
 				$state                  = $key->state;
 
+				if ($extend_mode == "auto") {
+					$extend_mode_badge = '<badge class="badge badge-success">OTOMATIS</badge>';
+				} else {
+					$extend_mode_badge = '<badge class="badge badge-danger">MANUAL</badge>';
+				}
+
+				if ($state == "active") {
+					$state_badge = '<badge class="badge badge-success">Aktif</badge>';
+				} else {
+					$state_badge = '<badge class="badge badge-danger">Tidak Aktif</badge>';
+				}
+
 				$nested = [
 					'created_at'             => $created_at,
 					'buyer_name'             => $buyer_name,
-					'buyer_email'            => $buyer_email,
+					'buyer_user_id'          => $buyer_user_id,
 					'invoice'                => $invoice,
 					'package_name'           => $package_name,
 					'amount'                 => $amount,
@@ -90,7 +102,9 @@ class M_trade_manager extends CI_Model
 					'profit_company_per_day' => $profit_company_per_day,
 					'expired_at'             => $expired_at,
 					'extend_mode'            => $extend_mode,
+					'extend_mode_badge'      => $extend_mode_badge,
 					'state'                  => $state,
+					'state_badge'            => $state_badge,
 				];
 				array_push($return, $nested);
 			}

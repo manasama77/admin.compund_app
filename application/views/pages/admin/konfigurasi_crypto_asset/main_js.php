@@ -9,7 +9,42 @@
 			"responsive": false,
 			"lengthChange": false,
 			"autoWidth": false,
-			"buttons": ["copy", "csv", "excel", "pdf", "print"]
+			buttons: [
+				"copy",
+				"csv",
+				{
+					extend: 'excelHtml5',
+					text: 'Excel',
+					orientation: 'landscape',
+					pageSize: 'A3',
+					title: "Konfigurasi Crypto Asset",
+					filename: "Konfigurasi Crypto Asset",
+					exportOptions: {
+						columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+						modifier: {
+							page: 'all'
+						},
+					}
+				},
+				{
+					extend: 'pdfHtml5',
+					text: 'PDF',
+					orientation: 'landscape',
+					pageSize: 'A3',
+					title: "Konfigurasi Crypto Asset",
+					filename: "Konfigurasi Crypto Asset",
+					exportOptions: {
+						columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+						modifier: {
+							page: 'all'
+						},
+					}
+				}
+			],
+			columnDefs: [{
+				targets: [15],
+				orderable: false
+			}]
 		}).buttons().container().appendTo('#table_data_wrapper .col-md-6:eq(0)');
 
 		$('#form_add').on('submit', function(e) {

@@ -37,7 +37,7 @@
 		id_package_crypto_asset.on('change', function() {
 			if (id_package_crypto_asset.val() != "") {
 				$.ajax({
-					url: '<?= site_url('konfigurasi_crypto_asset/detail_package'); ?>',
+					url: '<?= site_url('crypto_asset/konfigurasi/detail_package'); ?>',
 					method: 'get',
 					dataType: 'json',
 					data: {
@@ -169,7 +169,7 @@
 
 	function storeNewRules() {
 		$.ajax({
-			url: '<?= site_url('konfigurasi_crypto_asset/store'); ?>',
+			url: '<?= site_url('crypto_asset/konfigurasi/store'); ?>',
 			method: 'post',
 			dataType: 'json',
 			data: form.serialize(),
@@ -210,7 +210,7 @@
 					showCancelButton: false,
 					showConfirmButton: false,
 				}).then(() => {
-					window.location.replace('<?= site_url('konfigurasi_crypto_asset'); ?>');
+					window.location.replace('<?= site_url('crypto_asset/konfigurasi'); ?>');
 				});
 			}
 		});

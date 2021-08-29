@@ -25,7 +25,7 @@
 		<nav class="mt-2">
 			<ul class="nav nav-pills nav-sidebar flex-column nav-flat nav-compact nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item">
-					<a href="<?= site_url('dashboard'); ?>" class="nav-link">
+					<a href="<?= site_url('dashboard'); ?>" class="nav-link <?= ($this->uri->segment(1) == "dashboard") ? "active" : ""; ?>">
 						<i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>
 							Dashboard
@@ -65,27 +65,45 @@
 						</li>
 					</ul>
 				</li>
-				<li class="nav-item">
-					<a href="<?= site_url('crypto_asset'); ?>" class="nav-link">
+
+				<li class="nav-item <?= ($this->uri->segment(1) == "crypto_asset") ? "menu-is-opening menu-open" : ""; ?>">
+					<a href="#" class="nav-link <?= ($this->uri->segment(1) == "crypto_asset") ? "active" : ""; ?>">
 						<i class="nav-icon fas fa-coins"></i>
 						<p>
 							Crypto Asset
+							<i class="fas fa-angle-left right"></i>
 						</p>
 					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?= site_url('crypto_asset/index'); ?>" class="nav-link <?= ($this->uri->segment(1) == "crypto_asset" && $this->uri->segment(2) == "index") ? "active" : ""; ?>">
+								<i class="fas fa-list nav-icon"></i>
+								<p>List</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('crypto_asset/profit'); ?>" class="nav-link <?= ($this->uri->segment(1) == "crypto_asset" && $this->uri->segment(2) == "profit") ? "active" : ""; ?>">
+								<i class="nav-icon fas fa-coins"></i>
+								<p>
+									Profit Crypto Asset
+								</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('crypto_asset/konfigurasi'); ?>" class="nav-link <?= ($this->uri->segment(1) == "crypto_asset" && $this->uri->segment(2) == "konfigurasi") ? "active" : ""; ?>">
+								<i class="nav-icon fas fa-cog"></i>
+								<p>
+									Konfigurasi Crypto Asset
+								</p>
+							</a>
+						</li>
+					</ul>
 				</li>
 				<li class="nav-item">
 					<a href="<?= site_url('withdraw'); ?>" class="nav-link">
 						<i class="nav-icon fas fa-wallet"></i>
 						<p>
 							Withdraw
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= site_url('profit_crypto_asset'); ?>" class="nav-link">
-						<i class="nav-icon fas fa-coins"></i>
-						<p>
-							Profit Crypto Asset
 						</p>
 					</a>
 				</li>
@@ -150,14 +168,6 @@
 						<i class="nav-icon fas fa-user-secret"></i>
 						<p>
 							Admin Management
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= site_url('konfigurasi_crypto_asset'); ?>" class="nav-link">
-						<i class="nav-icon fas fa-cog"></i>
-						<p>
-							Konfigurasi Crypto Asset
 						</p>
 					</a>
 				</li>

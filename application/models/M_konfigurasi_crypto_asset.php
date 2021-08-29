@@ -76,12 +76,14 @@ class M_konfigurasi_crypto_asset extends CI_Model
 				'package_crypto_asset.logo',
 				'package_crypto_asset.sequence',
 				'konfigurasi_crypto_asset.is_active',
+				'konfigurasi_crypto_asset.tanggal_aktif',
 				'konfigurasi_crypto_asset.created_at',
 				'konfigurasi_crypto_asset.updated_at',
 				'konfigurasi_crypto_asset.deleted_at',
 			])
 			->from('konfigurasi_crypto_asset as konfigurasi_crypto_asset')
 			->join('package_crypto_asset as package_crypto_asset', 'package_crypto_asset.id = konfigurasi_crypto_asset.id_package_crypto_asset', 'left')
+			->where('konfigurasi_crypto_asset.deleted_at', null)
 			->order_by('package_crypto_asset.sequence')
 			->get();
 
@@ -93,7 +95,7 @@ class M_konfigurasi_crypto_asset extends CI_Model
 				$id                        = $key->id;
 				$code                      = $key->code;
 				$name                      = $key->name;
-				$amount                    = $key->amount;
+				$amount                    = check_float($key->amount);
 				$profit_per_month_percent  = check_float($key->profit_per_month_percent);
 				$profit_per_month_value    = check_float($key->profit_per_month_value);
 				$profit_per_day_percentage = check_float($key->profit_per_day_percentage);
@@ -108,9 +110,16 @@ class M_konfigurasi_crypto_asset extends CI_Model
 				$logo                      = $key->logo;
 				$sequence                  = $key->sequence;
 				$is_active                 = $key->is_active;
+				$tanggal_aktif             = $key->tanggal_aktif;
 				$created_at                = $key->created_at;
 				$updated_at                = $key->updated_at;
 				$deleted_at                = $key->deleted_at;
+
+				if ($is_active == "yes") {
+					$is_active_badge = '<span class="badge badge-success">Aktif</span>';
+				} else {
+					$is_active_badge = '<span class="badge badge-danger">Tidak Aktif</span>';
+				}
 
 				$nested = compact([
 					'id',
@@ -131,6 +140,8 @@ class M_konfigurasi_crypto_asset extends CI_Model
 					'logo',
 					'sequence',
 					'is_active',
+					'is_active_badge',
+					'tanggal_aktif',
 					'created_at',
 					'updated_at',
 					'deleted_at',

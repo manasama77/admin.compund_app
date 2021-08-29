@@ -376,7 +376,7 @@
 						<table>
 							<tr>
 								<td>
-									<div class="text" style="padding: 0 2.5em; text-align: center;">
+									<div class="text" style="padding: 0 2.5em; text-align: center; color: rgba(0, 0, 0, 1);">
 										<h3>Proses KYC (Know Your Customer) Ditolak</h3>
 										<p><?= $alasan; ?></p>
 									</div>

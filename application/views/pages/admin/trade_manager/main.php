@@ -32,13 +32,13 @@
 										<th style="min-width: 200px;">Member</th>
 										<th style="min-width: 100px;">Invoice</th>
 										<th>Paket</th>
+										<th class="text-center">Status</th>
 										<th class="text-right">Investasi</th>
 										<th style="min-width: 130px;" class="text-right">Profit Member/Hari</th>
 										<th style="min-width: 130px;" class="text-right">Profit Upline/Hari</th>
 										<th style="min-width: 150px;" class="text-right">Profit Perusahaan/Hari</th>
 										<th class="text-center" style="min-width: 140px;">Tanggal Kedaluwarsa</th>
 										<th class="text-center" style="min-width: 130px;">Mode Perpanjangan</th>
-										<th class="text-center">Status</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -51,19 +51,21 @@
 												<td><?= $key['buyer_name']; ?> <small>(<?= $key['buyer_user_id']; ?>)</small></td>
 												<td><?= $key['invoice']; ?></td>
 												<td><?= $key['package_name']; ?></td>
+												<td class="text-center"><?= $key['state_badge']; ?></td>
 												<td class="text-right"><?= $key['amount']; ?></td>
 												<td class="text-right"><?= $key['profit_self_per_day']; ?></td>
 												<td class="text-right"><?= $key['profit_upline_per_day']; ?></td>
 												<td class="text-right"><?= $key['profit_company_per_day']; ?></td>
 												<td class="text-center">
 													<?php
-													if (in_array($key['state'], ['active', 'inactive', 'expired'])) {
-														echo $key['expired_at'];
-													}
+													echo (in_array($key['state'], ['active', 'inactive', 'expired'])) ? $key['expired_at'] : "";
 													?>
 												</td>
-												<td class="text-center"><?= $key['extend_mode_badge']; ?></td>
-												<td class="text-center"><?= $key['state_badge']; ?></td>
+												<td class="text-center">
+													<?php
+													echo (in_array($key['state'], ['active', 'inactive', 'expired'])) ? $key['extend_mode_badge'] : "";
+													?>
+												</td>
 											</tr>
 									<?php
 										endforeach;

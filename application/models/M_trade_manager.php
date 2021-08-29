@@ -84,7 +84,7 @@ class M_trade_manager extends CI_Model
 					$extend_mode_badge = '<badge class="badge badge-danger">MANUAL</badge>';
 				}
 
-				if ($state == "waiting_payment") {
+				if ($state == "waiting payment") {
 					$state_badge = '<badge class="badge badge-info">Menunggu Pembayaran</badge>';
 				} elseif ($state == "pending") {
 					$state_badge = '<badge class="badge badge-secondary">Verifikasi Pembayaran</badge>';

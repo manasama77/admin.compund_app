@@ -84,10 +84,18 @@ class M_trade_manager extends CI_Model
 					$extend_mode_badge = '<badge class="badge badge-danger">MANUAL</badge>';
 				}
 
-				if ($state == "active") {
+				if ($state == "waiting_payment") {
+					$state_badge = '<badge class="badge badge-info">Menunggu Pembayaran</badge>';
+				} elseif ($state == "pending") {
+					$state_badge = '<badge class="badge badge-secondary">Verifikasi Pembayaran</badge>';
+				} elseif ($state == "active") {
 					$state_badge = '<badge class="badge badge-success">Aktif</badge>';
+				} elseif ($state == "inactive") {
+					$state_badge = '<badge class="badge badge-dark">Tidak Aktif</badge>';
+				} elseif ($state == "cancel") {
+					$state_badge = '<badge class="badge badge-warning">Cancel</badge>';
 				} else {
-					$state_badge = '<badge class="badge badge-danger">Tidak Aktif</badge>';
+					$state_badge = '<badge class="badge badge-danger">Kedaluwarsa</badge>';
 				}
 
 				$nested = [

@@ -29,6 +29,18 @@ class BonusRewardController extends CI_Controller
 		];
 		$this->template->render($data);
 	}
+
+	public function change_status()
+	{
+		$id   = $this->input->post('id');
+		$type = $this->input->post('type');
+
+		$data  = ['reward_' . $type . '_done' => 'yes'];
+		$where = ['id_member' => $id];
+		$this->M_core->update('member_reward', $data, $where);
+
+		echo json_encode(['code' => 200]);
+	}
 }
         
 /* End of file  BonusRewardController.php */

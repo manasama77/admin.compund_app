@@ -44,6 +44,7 @@ $route['bonus/recruitment']          = 'BonusRecruitmentController/index';
 $route['bonus/qualification_leader'] = 'BonusQLController/index';
 $route['bonus/royalty']              = 'BonusRoyaltyController/index';
 $route['bonus/reward']               = 'BonusRewardController/index';
+$route['bonus/reward/change_status'] = 'BonusRewardController/change_status';
 
 $route['withdraw'] = 'WithdrawController/index';
 

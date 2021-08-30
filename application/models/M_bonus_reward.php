@@ -73,7 +73,7 @@ class M_bonus_reward extends CI_Model
 						'email'        => $email,
 						'reward_date'  => $reward_1_date,
 						'reward_done'  => $reward_1_done,
-						'reward_badge' => $this->_craft_badge($reward_1_done, $id, 1),
+						'reward_badge' => $this->_craft_badge($reward_1_done, $id, $fullname, 1),
 						'reward_type'  => 1,
 					];
 					array_push($return, $nested);
@@ -87,7 +87,7 @@ class M_bonus_reward extends CI_Model
 						'email'        => $email,
 						'reward_date'  => $reward_2_date,
 						'reward_done'  => $reward_2_done,
-						'reward_badge' => $this->_craft_badge($reward_2_done, $id, 2),
+						'reward_badge' => $this->_craft_badge($reward_2_done, $id, $fullname, 2),
 						'reward_type'  => 2,
 					];
 					array_push($return, $nested);
@@ -101,7 +101,7 @@ class M_bonus_reward extends CI_Model
 						'email'        => $email,
 						'reward_date'  => $reward_3_date,
 						'reward_done'  => $reward_3_done,
-						'reward_badge' => $this->_craft_badge($reward_3_done, $id, 3),
+						'reward_badge' => $this->_craft_badge($reward_3_done, $id, $fullname, 3),
 						'reward_type'  => 3,
 					];
 					array_push($return, $nested);
@@ -115,7 +115,7 @@ class M_bonus_reward extends CI_Model
 						'email'        => $email,
 						'reward_date'  => $reward_4_date,
 						'reward_done'  => $reward_4_done,
-						'reward_badge' => $this->_craft_badge($reward_4_done, $id, 4),
+						'reward_badge' => $this->_craft_badge($reward_4_done, $id, $fullname, 4),
 						'reward_type'  => 4,
 					];
 					array_push($return, $nested);
@@ -129,7 +129,7 @@ class M_bonus_reward extends CI_Model
 						'email'        => $email,
 						'reward_date'  => $reward_5_date,
 						'reward_done'  => $reward_5_done,
-						'reward_badge' => $this->_craft_badge($reward_5_done, $id, 5),
+						'reward_badge' => $this->_craft_badge($reward_5_done, $id, $fullname, 5),
 						'reward_type'  => 5,
 					];
 					array_push($return, $nested);
@@ -140,12 +140,12 @@ class M_bonus_reward extends CI_Model
 		return $return;
 	}
 
-	protected function _craft_badge($status, $id, $reward_type)
+	protected function _craft_badge($status, $id, $fullname, $reward_type)
 	{
 		if ($status == "yes") {
-			$return = '<span class="badge badge-success" style="cursor: pointer;">Complete</span>';
+			$return = '<span class="badge badge-success">Complete</span>';
 		} else {
-			$return = '<span class="badge badge-success" onclick="changeStatus(\'' . $id . '\', \'' . $reward_type . '\')">Pending</span>';
+			$return = '<span class="badge badge-warning" style="cursor: pointer;" onclick="changeStatus(\'' . $id . '\', \'' . $fullname . '\', \'' . $reward_type . '\')">Pending</span>';
 		}
 
 		return $return;

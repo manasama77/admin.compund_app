@@ -40,6 +40,8 @@ class M_member extends CI_Model
 			'member_balance.profit_unpaid',
 			'member_balance.bonus',
 			'member_balance.ratu',
+			'(SELECT SUM(*) from et_withdraw as wd where wd.id_member = member.id and wd.source = "profit_paid" and wd.state = "success") as wd_profit',
+			'(SELECT SUM(*) from et_withdraw as wd where wd.id_member = member.id and wd.source = "bonus" and wd.state = "success") as wd_bonus',
 			'member_balance.total_omset',
 
 			'bank.name as nama_bank',
@@ -90,6 +92,8 @@ class M_member extends CI_Model
 				$nested['profit_unpaid']              = check_float($key->profit_unpaid);
 				$nested['bonus']                      = check_float($key->bonus);
 				$nested['ratu']                       = check_float($key->ratu);
+				$nested['wd_profit']                  = check_float($key->wd_profit);
+				$nested['wd_bonus']                   = check_float($key->wd_bonus);
 				$nested['total_omset']                = check_float($key->total_omset);
 				$nested['nama_bank']                  = $key->nama_bank;
 				$nested['foto_ktp']                   = $key->foto_ktp;

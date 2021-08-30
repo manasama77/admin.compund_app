@@ -40,8 +40,8 @@ class M_member extends CI_Model
 			'member_balance.profit_unpaid',
 			'member_balance.bonus',
 			'member_balance.ratu',
-			'(SELECT SUM(*) from et_withdraw as wd where wd.id_member = member.id and wd.source = "profit_paid" and wd.state = "success") as wd_profit',
-			'(SELECT SUM(*) from et_withdraw as wd where wd.id_member = member.id and wd.source = "bonus" and wd.state = "success") as wd_bonus',
+			'(SELECT SUM(wd.amount_1) from et_withdraw as wd where wd.id_member = member.id and wd.source = "profit_paid" and wd.state = "success") as wd_profit',
+			'(SELECT SUM(wd.amount_1) from et_withdraw as wd where wd.id_member = member.id and wd.source = "bonus" and wd.state = "success") as wd_bonus',
 			'member_balance.total_omset',
 
 			'bank.name as nama_bank',

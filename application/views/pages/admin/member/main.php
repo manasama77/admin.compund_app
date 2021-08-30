@@ -45,7 +45,7 @@
 										<th class="text-right" style="min-width: 50px;">Bonus</th>
 										<th class="text-right" style="min-width: 60px;">Ratu</th>
 										<th class="text-right" style="min-width: 60px;">WD Profit</th>
-										<th class="text-right" style="min-width: 60px;">WD Bonus</th>
+										<th class="text-right" style="min-width: 70px;">WD Bonus</th>
 										<th class="text-center" style="min-width: 60px;">Downline</th>
 										<th class="text-center">Status</th>
 									</tr>

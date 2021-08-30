@@ -131,6 +131,14 @@
 								</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('bonus/reward'); ?>" class="nav-link <?= ($this->uri->segment(1) == "bonus" && $this->uri->segment(2) == "reward") ? "active" : ""; ?>">
+								<i class="nav-icon fas fa-users"></i>
+								<p>
+									Reward
+								</p>
+							</a>
+						</li>
 					</ul>
 				</li>
 

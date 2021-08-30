@@ -40,9 +40,10 @@ $route['crypto_asset/konfigurasi/detail_package'] 	= 'KonfigurasiCryptoAssetCont
 $route['crypto_asset/konfigurasi/store']          	= 'KonfigurasiCryptoAssetController/store';
 $route['crypto_asset/konfigurasi/destryoy/(:any)'] 	= 'KonfigurasiCryptoAssetController/destroy/$1';
 
-$route['bonus/recruitment'] = 'BonusRecruitmentController/index';
+$route['bonus/recruitment']          = 'BonusRecruitmentController/index';
 $route['bonus/qualification_leader'] = 'BonusQLController/index';
-$route['bonus/royalty'] = 'BonusRoyaltyController/index';
+$route['bonus/royalty']              = 'BonusRoyaltyController/index';
+$route['bonus/reward']               = 'BonusRewardController/index';
 
 $route['withdraw'] = 'WithdrawController/index';
 

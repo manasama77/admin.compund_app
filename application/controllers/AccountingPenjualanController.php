@@ -16,13 +16,49 @@ class AccountingPenjualanController extends CI_Controller
 	}
 
 
-	public function index()
+	public function penjualan()
 	{
 		$arr = $this->M_accounting->get_list_penjualan();
 		$data = [
 			'title'      => APP_NAME . ' | Accounting Penjualan',
 			'content'    => 'accounting/penjualan/main',
 			'vitamin_js' => 'accounting/penjualan/main_js',
+			'arr'        => $arr,
+		];
+		$this->template->render($data);
+	}
+
+	public function profit()
+	{
+		$arr = $this->M_accounting->get_list_profit();
+		$data = [
+			'title'      => APP_NAME . ' | Accounting Bonus',
+			'content'    => 'accounting/profit/main',
+			'vitamin_js' => 'accounting/profit/main_js',
+			'arr'        => $arr,
+		];
+		$this->template->render($data);
+	}
+
+	public function bonus()
+	{
+		$arr = $this->M_accounting->get_list_bonus();
+		$data = [
+			'title'      => APP_NAME . ' | Accounting Bonus',
+			'content'    => 'accounting/bonus/main',
+			'vitamin_js' => 'accounting/bonus/main_js',
+			'arr'        => $arr,
+		];
+		$this->template->render($data);
+	}
+
+	public function reward()
+	{
+		$arr = $this->M_accounting->get_list_reward();
+		$data = [
+			'title'      => APP_NAME . ' | Accounting Bonus',
+			'content'    => 'accounting/reward/main',
+			'vitamin_js' => 'accounting/reward/main_js',
 			'arr'        => $arr,
 		];
 		$this->template->render($data);

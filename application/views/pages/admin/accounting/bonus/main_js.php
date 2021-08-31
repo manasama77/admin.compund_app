@@ -4,19 +4,7 @@
 			"scrollX": "300px",
 			"scrollY": "500px",
 			order: [
-				[0, 'desc']
-			],
-			"responsive": false,
-			"lengthChange": false,
-			"autoWidth": false,
-			"buttons": ["copy", "csv", "excel", "pdf", "print"]
-		}).buttons().container().appendTo('#table_data_wrapper .col-md-6:eq(0)');
-
-		$("#table_data_2").DataTable({
-			"scrollX": "300px",
-			"scrollY": "500px",
-			order: [
-				[0, 'desc']
+				[0, 'asc']
 			],
 			"responsive": false,
 			"lengthChange": false,

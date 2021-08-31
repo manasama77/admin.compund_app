@@ -70,7 +70,10 @@ $route['change_status']    = 'AdminManagementController/change_status';
 $route['add_admin']        = 'AdminManagementController/add_admin';
 $route['delete_admin']     = 'AdminManagementController/delete_admin';
 
-$route['accounting/penjualan'] = 'AccountingPenjualanController/index';
+$route['accounting/penjualan'] = 'AccountingPenjualanController/penjualan';
+$route['accounting/profit']    = 'AccountingPenjualanController/profit';
+$route['accounting/bonus']     = 'AccountingPenjualanController/bonus';
+$route['accounting/reward']    = 'AccountingPenjualanController/reward';
 
 $route['konfigurasi/aplikasi']        = 'KonfigurasiAplikasi/index';
 $route['konfigurasi/aplikasi/update'] = 'KonfigurasiAplikasi/update';

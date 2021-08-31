@@ -206,6 +206,24 @@
 								<p>Penjualan</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('accounting/profit'); ?>" class="nav-link <?= ($this->uri->segment(1) == "accounting" && $this->uri->segment(2) == "profit") ? "active" : ""; ?>">
+								<i class="fas fa-book nav-icon"></i>
+								<p>Profit</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('accounting/bonus'); ?>" class="nav-link <?= ($this->uri->segment(1) == "accounting" && $this->uri->segment(2) == "bonus") ? "active" : ""; ?>">
+								<i class="fas fa-book nav-icon"></i>
+								<p>Bonus</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('accounting/reward'); ?>" class="nav-link <?= ($this->uri->segment(1) == "accounting" && $this->uri->segment(2) == "reward") ? "active" : ""; ?>">
+								<i class="fas fa-book nav-icon"></i>
+								<p>Reward</p>
+							</a>
+						</li>
 					</ul>
 				</li>
 				<li class="nav-item">

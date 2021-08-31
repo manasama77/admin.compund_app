@@ -169,33 +169,3 @@
 		</div>
 	</div>
 </section>
-
-<form id="form_reset">
-	<div class="modal fade" id="modal_reset" data-backdrop="static" data-keyboard="false" tabindex="-1">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">Reset Password</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="email_reset">Email</label>
-						<input type="text" class="form-control" id="email_reset" name="email_reset" required readonly>
-					</div>
-					<div class="form-group">
-						<label for="password_reset">New Password</label>
-						<input type="password" class="form-control" id="password_reset" name="password_reset" required>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<input type="hidden" id="id_reset" name="id_reset">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</form>

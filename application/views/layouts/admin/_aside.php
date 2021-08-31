@@ -190,6 +190,24 @@
 						</p>
 					</a>
 				</li>
+
+				<li class="nav-item <?= ($this->uri->segment(1) == "accounting") ? "menu-is-opening menu-open" : ""; ?>">
+					<a href="#" class="nav-link <?= ($this->uri->segment(1) == "accounting") ? "active" : ""; ?>">
+						<i class="nav-icon fas fa-balance-scale"></i>
+						<p>
+							Accounting
+							<i class="fas fa-angle-left right"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?= site_url('accounting/penjualan'); ?>" class="nav-link <?= ($this->uri->segment(1) == "accounting" && $this->uri->segment(2) == "penjualan") ? "active" : ""; ?>">
+								<i class="fas fa-book nav-icon"></i>
+								<p>Penjualan</p>
+							</a>
+						</li>
+					</ul>
+				</li>
 				<li class="nav-item">
 					<a href="<?= site_url('konfigurasi/aplikasi'); ?>" class="nav-link <?= ($this->uri->segment(1) == "konfigurasi") ? "active" : ""; ?>">
 						<i class="nav-icon fas fa-cog"></i>

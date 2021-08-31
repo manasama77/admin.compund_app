@@ -70,6 +70,8 @@ $route['change_status']    = 'AdminManagementController/change_status';
 $route['add_admin']        = 'AdminManagementController/add_admin';
 $route['delete_admin']     = 'AdminManagementController/delete_admin';
 
+$route['accounting/penjualan'] = 'AccountingPenjualanController/index';
+
 $route['konfigurasi/aplikasi']        = 'KonfigurasiAplikasi/index';
 $route['konfigurasi/aplikasi/update'] = 'KonfigurasiAplikasi/update';
 

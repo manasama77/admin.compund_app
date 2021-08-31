@@ -9,6 +9,13 @@ if (isset($vitamin_css)) {
 }
 ?>
 
+<style>
+	.dataTables_scrollHeadInner,
+	.table {
+		width: 100% !important;
+	}
+</style>
+
 <body class="control-sidebar-slide-open layout-fixed sidebar-mini-sm text-sm" style="height: auto;">
 	<div class="wrapper">
 

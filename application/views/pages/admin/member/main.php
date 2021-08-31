@@ -25,12 +25,12 @@
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered table-striped" id="table_data">
+							<table class="table table-bordered table-striped" id="table_data" style="width: 100%;">
 								<thead>
 									<tr>
 										<th class="text-center" style="min-width: 120px;">Tanggal Registrasi</th>
-										<th class="text-center">KYC</th>
-										<th>User ID</th>
+										<th class="text-center" style="min-width: 50px;">KYC</th>
+										<th style="min-width: 80px;">User ID</th>
 										<th style="min-width: 150px;">Nama Lengkap</th>
 										<th style="min-width: 150px;">Email</th>
 										<th style="min-width: 80px;">No Telepon</th>

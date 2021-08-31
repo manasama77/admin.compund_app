@@ -24,7 +24,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">SUM Reward</span>
+						<span class="info-box-text">Total Nilai Reward</span>
 						<span class="info-box-number">
 							<?= $arr['sum_reward']; ?> <small>USDT</small>
 						</span>
@@ -38,7 +38,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">SUM Terbayarkan</span>
+						<span class="info-box-text">Total Nilai reward terbayar</span>
 						<span class="info-box-number">
 							<?= $arr['sum_terbayarkan']; ?> <small>USDT</small>
 						</span>
@@ -52,7 +52,8 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">Sisa Piutang</span>
+						<span class="info-box-text">Sisa Nilai reward
+							terhutang</span>
 						<span class="info-box-number">
 							<?= $arr['sisa_piutang']; ?> <small>USDT</small>
 						</span>
@@ -76,9 +77,10 @@
 								<thead>
 									<tr>
 										<th style="min-width: 100px;">Reward</th>
-										<th class="text-right" style="min-width: 100px;">Price</th>
-										<th class="text-right" style="min-width: 100px;">Terbayarkan</th>
-										<th class="text-right" style="min-width: 100px;">Sisa Piutang</th>
+										<th class="text-right" style="min-width: 100px;">Nilai Reward</th>
+										<th class="text-right" style="min-width: 100px;">Nilai reward terbayar</th>
+										<th class="text-right" style="min-width: 100px;">Sisa Nilai reward
+											terhutang</th>
 									</tr>
 								</thead>
 								<tbody>

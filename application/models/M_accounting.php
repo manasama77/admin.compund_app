@@ -220,15 +220,17 @@ class M_accounting extends CI_Model
 			member.user_id,
 			( balance.total_invest_trade_manager + balance.total_invest_crypto_asset ) AS investasi,
 			balance.bonus AS total_bonus,
+			( SELECT sum( recruitment.bonus_amount ) FROM et_log_bonus_recruitment AS recruitment WHERE recruitment.id_member = balance.id_member ) AS bonus_recruitment,
+			( SELECT sum( ql.bonus_amount ) FROM et_log_bonus_qualification_level AS ql WHERE ql.id_member = balance.id_member ) AS bonus_ql,
+			( SELECT sum( royalty.bonus_amount ) FROM et_log_bonus_royalty AS royalty WHERE royalty.id_member = balance.id_member ) AS bonus_royalty,
 			( sum( withdraw.amount_1 ) ) AS total_wd,
 			( balance.bonus - sum( withdraw.amount_1 ) ) AS sisa_piutang 
 		FROM
 			et_member_balance AS balance
 			LEFT JOIN et_member AS member ON member.id = balance.id_member
-			LEFT JOIN et_member_withdraw AS withdraw ON 
-				withdraw.id_member = balance.id_member 
-				AND withdraw.source = 'profit_paid' 
-				AND withdraw.state = 'success' 
+			LEFT JOIN et_member_withdraw AS withdraw ON withdraw.id_member = balance.id_member 
+			AND withdraw.source = 'profit_paid' 
+			AND withdraw.state = 'success' 
 		GROUP BY
 			member.id 
 		ORDER BY
@@ -239,20 +241,26 @@ class M_accounting extends CI_Model
 
 
 		foreach ($query->result() as $key) {
-			$fullname     = $key->fullname;
-			$user_id      = $key->user_id;
-			$investasi    = $key->investasi;
-			$total_bonus  = $key->total_bonus;
-			$total_wd     = $key->total_wd;
-			$sisa_piutang = $key->sisa_piutang;
+			$fullname          = $key->fullname;
+			$user_id           = $key->user_id;
+			$investasi         = $key->investasi;
+			$total_bonus       = $key->total_bonus;
+			$bonus_recruitment = $key->bonus_recruitment;
+			$bonus_ql          = $key->bonus_ql;
+			$bonus_royalty     = $key->bonus_royalty;
+			$total_wd          = $key->total_wd;
+			$sisa_piutang      = $key->sisa_piutang;
 
 			$nested = [
-				'fullname'     => $fullname,
-				'user_id'      => $user_id,
-				'investasi'    => check_float($investasi),
-				'total_bonus'  => check_float($total_bonus),
-				'total_wd'     => check_float($total_wd),
-				'sisa_piutang' => check_float($sisa_piutang),
+				'fullname'          => $fullname,
+				'user_id'           => $user_id,
+				'investasi'         => check_float($investasi),
+				'total_bonus'       => check_float($total_bonus),
+				'bonus_recruitment' => check_float($bonus_recruitment),
+				'bonus_ql'          => check_float($bonus_ql),
+				'bonus_royalty'     => check_float($bonus_royalty),
+				'total_wd'          => check_float($total_wd),
+				'sisa_piutang'      => check_float($sisa_piutang),
 			];
 
 			array_push($data_paket, $nested);

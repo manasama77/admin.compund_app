@@ -24,7 +24,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">SUM Profit</span>
+						<span class="info-box-text">Total Profit Sharing</span>
 						<span class="info-box-number">
 							<?= $arr['sum_profit']; ?> <small>USDT</small>
 						</span>
@@ -38,7 +38,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">SUM WD Profit</span>
+						<span class="info-box-text">Total WD Profit Sharing</span>
 						<span class="info-box-number">
 							<?= $arr['sum_wd']; ?> <small>USDT</small>
 						</span>
@@ -52,7 +52,8 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">Sisa Piutang</span>
+						<span class="info-box-text">Sisa profit sharing
+							terhutang</span>
 						<span class="info-box-number">
 							<?= $arr['sisa_piutang']; ?> <small>USDT</small>
 						</span>
@@ -77,9 +78,9 @@
 									<tr>
 										<th style="min-width: 100px;">Member</th>
 										<th class="text-right" style="min-width: 100px;">Investasi</th>
-										<th class="text-right" style="min-width: 100px;">Total Profit</th>
-										<th class="text-right" style="min-width: 100px;">Total WD Profit</th>
-										<th class="text-right" style="min-width: 100px;">Sisa Piutang</th>
+										<th class="text-right" style="min-width: 100px;">Total Profit Sharing</th>
+										<th class="text-right" style="min-width: 100px;">Total WD Profit Sharing</th>
+										<th class="text-right" style="min-width: 100px;">Sisa profit sharing terhutang</th>
 									</tr>
 								</thead>
 								<tbody>

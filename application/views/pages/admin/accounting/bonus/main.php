@@ -24,7 +24,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">SUM Bonus</span>
+						<span class="info-box-text">Total Bonus Aktif</span>
 						<span class="info-box-number">
 							<?= $arr['sum_bonus']; ?> <small>USDT</small>
 						</span>
@@ -38,7 +38,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">SUM WD Bonus</span>
+						<span class="info-box-text">Total WD bonus aktif</span>
 						<span class="info-box-number">
 							<?= $arr['sum_wd']; ?> <small>USDT</small>
 						</span>
@@ -52,7 +52,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">Sisa Piutang</span>
+						<span class="info-box-text">Sisa bonus aktif terhutang</span>
 						<span class="info-box-number">
 							<?= $arr['sisa_piutang']; ?> <small>USDT</small>
 						</span>
@@ -72,14 +72,16 @@
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered table-striped" id="table_data_1" style="width: 100% !important; min-width: 100%;">
+							<table class="table table-bordered table-striped" id="table_data_1" style="width: 100% !important;">
 								<thead>
 									<tr>
-										<th style="min-width: 100px;">Member</th>
-										<th class="text-right" style="min-width: 100px;">Investasi</th>
-										<th class="text-right" style="min-width: 100px;">Total Bonus</th>
-										<th class="text-right" style="min-width: 100px;">Total WD Bonus</th>
-										<th class="text-right" style="min-width: 100px;">Sisa Piutang</th>
+										<th style="min-width: 150px;">Member</th>
+										<th class="text-right" style="min-width: 50px;">Investasi</th>
+										<th class="text-right" style="min-width: 120px;">Total Bonus Sposor</th>
+										<th class="text-right" style="min-width: 140px;">Total Bonus Q.Leader</th>
+										<th class="text-right" style="min-width: 130px;">Total Bonus Royalty</th>
+										<th class="text-right" style="min-width: 130px;">Total WD bonus aktif</th>
+										<th class="text-right" style="min-width: 170px;">Sisa bonus aktif terhutang</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -90,7 +92,9 @@
 											<tr>
 												<td><?= $key['fullname']; ?> <small>(<?= $key['user_id']; ?>)</small></td>
 												<td class="text-right"><?= $key['investasi']; ?></td>
-												<td class="text-right"><?= $key['total_bonus']; ?></td>
+												<td class="text-right"><?= $key['bonus_recruitment']; ?></td>
+												<td class="text-right"><?= $key['bonus_ql']; ?></td>
+												<td class="text-right"><?= $key['bonus_royalty']; ?></td>
 												<td class="text-right"><?= $key['total_wd']; ?></td>
 												<td class="text-right"><?= $key['sisa_piutang']; ?></td>
 											</tr>

@@ -24,7 +24,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">Total Omzet</span>
+						<span class="info-box-text">Omzet Penjualan</span>
 						<span class="info-box-number">
 							<?= $arr['total_omzet']; ?> <small>USDT</small>
 						</span>
@@ -38,7 +38,8 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">Total Paket Habis</span>
+						<span class="info-box-text">Nilai akun habis masa
+							kontrak</span>
 						<span class="info-box-number">
 							<?= $arr['total_expired']; ?> <small>USDT</small>
 						</span>
@@ -52,7 +53,7 @@
 						<i class="fas fa-coins"></i>
 					</span>
 					<div class="info-box-content">
-						<span class="info-box-text">Sisa Piutang</span>
+						<span class="info-box-text">Nilai Sisa akun aktif</span>
 						<span class="info-box-number">
 							<?= $arr['sisa_piutang']; ?> <small>USDT</small>
 						</span>

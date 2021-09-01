@@ -224,6 +224,12 @@
 								<p>Reward</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="<?= site_url('accounting/rekap'); ?>" class="nav-link <?= ($this->uri->segment(1) == "accounting" && $this->uri->segment(2) == "rekap") ? "active" : ""; ?>">
+								<i class="fas fa-book nav-icon"></i>
+								<p>Rekap</p>
+							</a>
+						</li>
 					</ul>
 				</li>
 				<li class="nav-item">

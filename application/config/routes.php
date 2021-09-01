@@ -74,6 +74,7 @@ $route['accounting/penjualan'] = 'AccountingPenjualanController/penjualan';
 $route['accounting/profit']    = 'AccountingPenjualanController/profit';
 $route['accounting/bonus']     = 'AccountingPenjualanController/bonus';
 $route['accounting/reward']    = 'AccountingPenjualanController/reward';
+$route['accounting/rekap']     = 'AccountingPenjualanController/rekap';
 
 $route['konfigurasi/aplikasi']        = 'KonfigurasiAplikasi/index';
 $route['konfigurasi/aplikasi/update'] = 'KonfigurasiAplikasi/update';
